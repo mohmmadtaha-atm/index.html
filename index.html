@@ -6,21 +6,29 @@
     <title>TAHA AZR PERFUMES</title>
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --card-bg: #1a1a1a;
-            --text-color: #ffffff;
+            --bg-color: #080808;
+            --card-bg: rgba(20, 20, 20, 0.75);
+            --card-hover-bg: rgba(30, 30, 30, 0.9);
+            --text-color: #f3f3f3;
             --accent-color: #d4af37;
-            --border-color: #333333;
-            --subtext-color: #b0b0b0;
+            --accent-gradient: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            --border-color: rgba(212, 175, 55, 0.2);
+            --border-hover-color: rgba(212, 175, 55, 0.6);
+            --subtext-color: #a0a0a0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         [data-theme="light"] {
-            --bg-color: #f4f4f4;
-            --card-bg: #ffffff;
-            --text-color: #111111;
+            --bg-color: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-hover-bg: rgba(255, 255, 255, 1);
+            --text-color: #1a1a1a;
             --accent-color: #b8860b;
-            --border-color: #ddd3d3;
+            --accent-gradient: linear-gradient(135deg, #dfb44c 0%, #b8860b 50%, #8b6508 100%);
+            --border-color: rgba(184, 134, 11, 0.25);
+            --border-hover-color: rgba(184, 134, 11, 0.7);
             --subtext-color: #666666;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         * {
@@ -28,131 +36,174 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             text-align: center;
-            padding: 20px;
+            padding: 15px;
+            overflow-x: hidden;
         }
 
+        /* Top Controls Header */
         .top-controls {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto 15px auto;
+            padding: 0 10px;
         }
 
         .control-btn {
             background: var(--card-bg);
             color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 8px 16px;
-            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 0.9rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
         }
         .control-btn:hover {
-            opacity: 0.8;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
+        /* Header Branding */
         header {
-            margin: 30px 0;
+            margin: 20px 0 35px 0;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            font-size: 2.2rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+            font-weight: 800;
         }
 
         p.subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--subtext-color);
+            letter-spacing: 0.5px;
         }
 
         .section-title {
             color: var(--accent-color);
-            margin: 40px 0 20px 0;
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--accent-color);
+            margin: 30px 0 25px 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            position: relative;
             display: inline-block;
-            padding-bottom: 5px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 2px;
         }
 
+        /* Perfumes Grid */
         .perfumes-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             max-width: 1100px;
             margin: 0 auto;
+            padding: 10px;
         }
 
         .perfume-card {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
-            width: 300px;
+            border-radius: 16px;
+            padding: 18px;
             text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .perfume-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
+            transform: translateY(-7px);
+            border-color: var(--border-hover-color);
+            background: var(--card-hover-bg);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.12);
         }
 
         [dir="rtl"] .perfume-card {
             text-align: right;
         }
 
+        .perfume-img-container {
+            width: 100%;
+            height: 230px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
         .perfume-img {
             width: 100%;
-            height: 220px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background-color: #222;
+            transition: transform 0.5s ease;
+        }
+        .perfume-card:hover .perfume-img {
+            transform: scale(1.05);
         }
 
         .perfume-card h3 {
             color: var(--accent-color);
             margin-bottom: 5px;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
+            font-weight: 700;
         }
 
         .tag {
             display: inline-block;
-            background: var(--border-color);
-            color: var(--text-color);
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.8rem;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
             margin-bottom: 10px;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .desc {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--subtext-color);
             margin-bottom: 15px;
             flex-grow: 1;
+            line-height: 1.4;
         }
 
+        /* Size Selection Buttons */
         .size-buttons-container {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .size-btn {
@@ -160,81 +211,85 @@
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 8px 5px;
-            border-radius: 6px;
+            padding: 8px 4px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-align: center;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
         .size-btn.active {
             border-color: var(--accent-color);
-            background: var(--card-bg);
+            background: rgba(212, 175, 55, 0.15);
             color: var(--accent-color);
-            font-weight: bold;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
         }
 
         .price-tag {
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 800;
             color: var(--accent-color);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
+        /* Order Button */
         .btn-order {
             display: block;
             width: 100%;
-            background-color: var(--accent-color);
-            color: #000;
-            padding: 12px;
+            background: var(--accent-gradient);
+            color: #080808;
+            padding: 11px;
             text-align: center;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            transition: opacity 0.2s, transform 0.2s;
         }
         .btn-order:hover {
-            opacity: 0.9;
+            opacity: 0.92;
+            transform: translateY(-1px);
         }
 
+        /* Detail View Section */
         #detail-view {
             display: none;
             max-width: 800px;
             margin: 20px auto;
             background: var(--card-bg);
-            border: 1px solid var(--accent-color);
-            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-hover-color);
+            border-radius: 20px;
             padding: 30px;
             text-align: left;
+            box-shadow: var(--shadow);
         }
         [dir="rtl"] #detail-view {
             text-align: right;
         }
 
-        /* زر رجوع واضح واحترافي يشبه المواقع الكبرى */
         .standard-back-btn {
             background: var(--bg-color);
             color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
             border-radius: 8px;
             cursor: pointer;
-            margin-bottom: 25px;
-            font-weight: bold;
-            font-size: 1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            gap: 8px;
             transition: all 0.2s ease;
         }
         .standard-back-btn:hover {
             background: var(--accent-color);
-            color: #000;
-        }
-        .standard-back-btn span {
-            font-size: 1.2rem;
-            line-height: 1;
+            color: #080808;
         }
 
         .suggestions-container {
@@ -253,47 +308,60 @@
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             padding: 10px;
-            border-radius: 8px;
-            width: 150px;
+            border-radius: 10px;
+            width: 140px;
             cursor: pointer;
             text-align: center;
+            transition: transform 0.2s;
+        }
+        .suggestion-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
         }
         .suggestion-item img {
             width: 100%;
             height: 100px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 6px;
             margin-bottom: 5px;
         }
 
+        /* Reviews Section */
         .reviews-section {
-            max-width: 600px;
-            margin: 50px auto 20px auto;
+            max-width: 700px;
+            margin: 40px auto 20px auto;
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 24px;
             text-align: left;
+            box-shadow: var(--shadow);
         }
         [dir="rtl"] .reviews-section {
             text-align: right;
         }
         .review-form input, .review-form textarea {
             width: 100%;
-            padding: 10px;
+            padding: 11px;
             margin: 8px 0;
-            border-radius: 5px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
             background: var(--bg-color);
             color: var(--text-color);
+            font-size: 0.95rem;
+        }
+        .review-form input:focus, .review-form textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
         }
         
         .star-rating-select {
             display: flex;
             gap: 5px;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             cursor: pointer;
-            margin: 10px 0;
+            margin: 8px 0;
             justify-content: flex-start;
         }
         .star-rating-select span {
@@ -301,48 +369,57 @@
             transition: color 0.2s;
         }
         .star-rating-select span.selected {
-            color: #d4af37;
+            color: var(--accent-color);
         }
 
         .review-submit {
-            background: var(--accent-color);
-            color: #000;
+            background: var(--accent-gradient);
+            color: #080808;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 11px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
             margin-top: 10px;
             width: 100%;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
         }
         .reviews-list {
             margin-top: 20px;
         }
         .review-item {
             background: var(--bg-color);
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 10px;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 12px;
             border-left: 3px solid var(--accent-color);
+            border: 1px solid var(--border-color);
         }
         [dir="rtl"] .review-item {
-            border-left: none;
+            border-left: 1px solid var(--border-color);
             border-right: 3px solid var(--accent-color);
         }
         .stars {
-            color: #d4af37;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin-bottom: 4px;
         }
 
+        /* Footer */
         footer {
             margin-top: 40px;
             color: var(--subtext-color);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            padding-bottom: 20px;
         }
         footer a {
             color: var(--accent-color);
             text-decoration: none;
+            font-weight: 600;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -355,8 +432,7 @@
 
     <header>
         <h1 id="site-title">TAHA AZR PERFUMES</h1>
-        <!-- الجملة الجديدة هنا -->
-        <p class="subtitle" id="site-subtitle" data-en="Fragrances that touch the soul and leave an unforgettable trail." data-ar="عطور تلامس الروح وتترك خلفك أثراً لا يُنسى.">Where luxury meets uniqueness.. Discover your signature scent.</p>
+        <p class="subtitle" id="site-subtitle" data-en="Fragrances that touch the soul and leave an unforgettable trail." data-ar="عطور تلامس الروح وتترك خلفك أثراً لا يُنسى.">Fragrances that touch the soul and leave an unforgettable trail.</p>
     </header>
 
     <!-- Main Grid Section -->
@@ -366,7 +442,9 @@
         <div class="perfumes-grid">
             <!-- D BLACK -->
             <div class="perfume-card" onclick="showDetail('D BLACK', 'd-black.jpg', 'Men\'s', 'رجالي', 'A luxurious and distinctive fragrance.', 'عطر فخم ومميز يترك انطباعاً ساحراً.')">
-                <img src="d-black.jpg" alt="D BLACK" class="perfume-img">
+                <div class="perfume-img-container">
+                    <img src="d-black.jpg" alt="D BLACK" class="perfume-img">
+                </div>
                 <div>
                     <h3>D BLACK</h3>
                     <span class="tag" data-en="Men's" data-ar="رجالي">Men's</span>
@@ -384,7 +462,9 @@
 
             <!-- BERRY -->
             <div class="perfume-card" onclick="showDetail('BERRY', 'berry.jpg', 'Women\'s', 'نسائي', 'A charming fragrance full of femininity and attraction.', 'عطر ساحر ينبض بالأنوثة والجاذبية.')">
-                <img src="berry.jpg" alt="BERRY" class="perfume-img">
+                <div class="perfume-img-container">
+                    <img src="berry.jpg" alt="BERRY" class="perfume-img">
+                </div>
                 <div>
                     <h3>BERRY</h3>
                     <span class="tag" data-en="Women's" data-ar="نسائي">Women's</span>
@@ -402,7 +482,9 @@
 
             <!-- GUCCI MZ -->
             <div class="perfume-card" onclick="showDetail('GUCCI MZ', 'gucci.jpg', 'Unisex', 'للجنسين', 'An exceptional blend combining strong presence and soft details.', 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.')">
-                <img src="gucci.jpg" alt="GUCCI MZ" class="perfume-img">
+                <div class="perfume-img-container">
+                    <img src="gucci.jpg" alt="GUCCI MZ" class="perfume-img">
+                </div>
                 <div>
                     <h3>GUCCI MZ</h3>
                     <span class="tag" data-en="Unisex" data-ar="للجنسين">Unisex</span>
@@ -420,7 +502,9 @@
 
             <!-- BAKARAT -->
             <div class="perfume-card" onclick="showDetail('BAKARAT', 'bakarat.jpg', 'Men\'s', 'رجالي', 'A calm and luxurious fragrance that leaves an unforgettable trail.', 'عطر هادئ وفخم يترك أثراً لا يُنسى.')">
-                <img src="bakarat.jpg" alt="BAKARAT" class="perfume-img">
+                <div class="perfume-img-container">
+                    <img src="bakarat.jpg" alt="BAKARAT" class="perfume-img">
+                </div>
                 <div>
                     <h3>BAKARAT</h3>
                     <span class="tag" data-en="Men's" data-ar="رجالي">Men's</span>
@@ -438,7 +522,9 @@
 
             <!-- FAZZA -->
             <div class="perfume-card" onclick="showDetail('FAZZA', 'FAZZA.jpg', 'Women\'s', 'نسائي', 'Gives you a feeling of freshness and distinction all day long.', 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.')">
-                <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
+                <div class="perfume-img-container">
+                    <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
+                </div>
                 <div>
                     <h3>FAZZA</h3>
                     <span class="tag" data-en="Women's" data-ar="نسائي">Women's</span>
@@ -456,7 +542,9 @@
 
             <!-- LEXUS -->
             <div class="perfume-card" onclick="showDetail('LEXUS', 'lexus.jpg', 'Women\'s', 'نسائي', 'Absolute elegance and luxury in every spray.', 'أناقة وفخامة مطلقة في كل رشة.')">
-                <img src="lexus.jpg" alt="LEXUS" class="perfume-img">
+                <div class="perfume-img-container">
+                    <img src="lexus.jpg" alt="LEXUS" class="perfume-img">
+                </div>
                 <div>
                     <h3>LEXUS</h3>
                     <span class="tag" data-en="Women's" data-ar="نسائي">Women's</span>
@@ -476,17 +564,16 @@
 
     <!-- Detailed Single Perfume View -->
     <div id="detail-view">
-        <!-- زر رجوع واضح واحترافي -->
         <button class="standard-back-btn" onclick="goBack()">
             <span id="back-arrow-icon">←</span> <span id="back-btn-text">Back to Home</span>
         </button>
         
         <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
-            <img id="detail-img" src="" alt="" style="width: 280px; height: 320px; object-fit: cover; border-radius: 10px;">
+            <img id="detail-img" src="" alt="" style="width: 260px; height: 300px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-color);">
             <div style="flex: 1; text-align: left;" id="detail-text-box">
-                <h2 id="detail-title" style="color: var(--accent-color); margin-bottom: 10px;"></h2>
+                <h2 id="detail-title" style="color: var(--accent-color); margin-bottom: 8px;"></h2>
                 <span id="detail-tag" class="tag"></span>
-                <p id="detail-desc" style="color: var(--subtext-color); margin: 15px 0;"></p>
+                <p id="detail-desc" style="color: var(--subtext-color); margin: 15px 0; line-height: 1.5;"></p>
                 
                 <div class="size-buttons-container">
                     <button type="button" class="size-btn active" id="detail-btn-50" onclick="selectDetailSize(50, 220)">50 ml<br>220 AED</button>
@@ -499,14 +586,14 @@
 
         <!-- You May Also Like Section -->
         <div class="suggestions-container">
-            <h3 id="suggestions-title" style="color: var(--accent-color); margin-bottom: 10px;">You May Also Like</h3>
+            <h3 id="suggestions-title" style="color: var(--accent-color); margin-bottom: 12px; font-size: 1.2rem;">You May Also Like</h3>
             <div class="suggestions-grid" id="suggestionsGrid"></div>
         </div>
     </div>
 
     <!-- Reviews Section -->
     <div class="reviews-section">
-        <h3 id="reviews-title" style="color: var(--accent-color); margin-bottom: 15px;">Customer Reviews</h3>
+        <h3 id="reviews-title" style="color: var(--accent-color); margin-bottom: 15px; font-size: 1.3rem;">Customer Reviews</h3>
         <div class="review-form">
             <input type="text" id="reviewer-name" placeholder="Your Name" required>
             
@@ -543,7 +630,7 @@
 
     <footer>
         <p><span id="footer-text">Follow us on Instagram:</span> <a href="https://www.instagram.com/mohmmadtaha_313?igsi=MXg4amRnY2k1ZHVqMA%3D%3D&utm_source=qr" target="_blank">@mohmmadtaha_313</a></p>
-        <p style="margin-top: 10px;">All Rights Reserved © TAHA AZR PERFUMES</p>
+        <p style="margin-top: 8px;">All Rights Reserved © TAHA AZR PERFUMES</p>
     </footer>
 
     <script>
@@ -603,7 +690,6 @@
                 document.querySelector('.reviews-section').style.textAlign = 'right';
                 langBtn.innerText = 'English';
                 
-                // تحديث الجملة للغة العربية
                 subtitleEl.innerText = subtitleEl.getAttribute('data-ar');
 
                 document.getElementById('collection-heading').innerText = 'تشكيلة العطور المميزة';
@@ -642,7 +728,6 @@
                 document.querySelector('.reviews-section').style.textAlign = 'left';
                 langBtn.innerText = 'العربية';
                 
-                // تحديث الجملة للغة الإنجليزية
                 subtitleEl.innerText = subtitleEl.getAttribute('data-en');
 
                 document.getElementById('collection-heading').innerText = 'Our Exclusive Collection';
@@ -727,7 +812,7 @@
                 div.className = 'suggestion-item';
                 div.innerHTML = `
                     <img src="${item.img}" alt="${item.name}">
-                    <p style="font-weight: bold; font-size: 0.9rem; color: var(--accent-color);">${item.name}</p>
+                    <p style="font-weight: bold; font-size: 0.85rem; color: var(--accent-color);">${item.name}</p>
                 `;
                 div.onclick = () => showDetail(item.name, item.img, item.tagEn, item.tagAr, item.descEn, item.descAr);
                 grid.appendChild(div);
