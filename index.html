@@ -210,16 +210,28 @@
         [dir="rtl"] #detail-view {
             text-align: right;
         }
-        .back-btn {
-            background: var(--border-color);
-            color: var(--text-color);
-            border: none;
+
+        /* تصميم زر العودة على شكل سهم واسم البراند */
+        .back-arrow-btn {
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
             padding: 8px 15px;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
             margin-bottom: 20px;
             font-weight: bold;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
         }
+        .back-arrow-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
         .suggestions-container {
             margin-top: 30px;
             border-top: 1px solid var(--border-color);
@@ -458,7 +470,11 @@
 
     <!-- Detailed Single Perfume View -->
     <div id="detail-view">
-        <button class="back-btn" onclick="goBack()" id="back-btn-text">← Back to Collection</button>
+        <!-- زر العودة على شكل سهم واسم البراند -->
+        <button class="back-arrow-btn" onclick="goBack()">
+            <span>←</span> <span id="back-brand-text">TAHA AZR PERFUMES</span>
+        </button>
+        
         <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
             <img id="detail-img" src="" alt="" style="width: 280px; height: 320px; object-fit: cover; border-radius: 10px;">
             <div style="flex: 1; text-align: left;" id="detail-text-box">
@@ -472,8 +488,6 @@
                 </div>
                 <div id="detail-price-tag" class="price-tag">220 AED</div>
                 <a id="detail-order-btn" href="#" class="btn-order" onclick="orderWhatsAppDetail()">Order via WhatsApp</a>
-                
-                <button class="control-btn" style="width: 100%; margin-top: 15px;" onclick="goBack()" id="home-return-btn">العودة إلى القائمة الرئيسية</button>
             </div>
         </div>
 
@@ -490,7 +504,6 @@
         <div class="review-form">
             <input type="text" id="reviewer-name" placeholder="Your Name" required>
             
-            <!-- Interactive Star Selection -->
             <div class="star-rating-select" id="starRatingSelect">
                 <span onclick="setRating(1)">★</span>
                 <span onclick="setRating(2)">★</span>
@@ -589,8 +602,6 @@
                 document.getElementById('reviewer-comment').placeholder = 'اكتب تقييمك هنا...';
                 document.getElementById('review-btn').innerText = 'إرسال التقييم';
                 document.getElementById('footer-text').innerText = 'تابعنا على إنستغرام:';
-                document.getElementById('back-btn-text').innerText = '← العودة إلى القائمة';
-                document.getElementById('home-return-btn').innerText = 'العودة إلى القائمة الرئيسية';
                 document.getElementById('suggestions-title').innerText = 'قد يعجبك أيضاً';
                 
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'اطلب عبر الواتساب');
@@ -624,8 +635,6 @@
                 document.getElementById('reviewer-comment').placeholder = 'Write your review here...';
                 document.getElementById('review-btn').innerText = 'Submit Review';
                 document.getElementById('footer-text').innerText = 'Follow us on Instagram:';
-                document.getElementById('back-btn-text').innerText = '← Back to Collection';
-                document.getElementById('home-return-btn').innerText = 'Back to Main Collection';
                 document.getElementById('suggestions-title').innerText = 'You May Also Like';
 
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'Order via WhatsApp');
@@ -721,13 +730,18 @@
             const priceTag = card.querySelector('.price-tag').innerText;
             const sizeText = activeBtn ? activeBtn.innerText.split('\n')[0] : '50 ml';
 
-            let message = `${perfumeName} - ${sizeText} - ${priceTag}`;
+            // رسالة الواتساب المطورة حسب ذوقك
+            let message = currentLang === 'ar' 
+                ? `مرحباً، أريد أن أطلب هذا العطر (${perfumeName}) بحجم ${sizeText} بسعر ${priceTag}. يعطيك العافية!`
+                : `Hello, I would like to order this perfume (${perfumeName}) in size ${sizeText} for ${priceTag}.`;
 
             window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function orderWhatsAppDetail() {
-            let message = `${currentSelectedPerfume} - ${currentSelectedSize} - ${currentSelectedPrice}`;
+            let message = currentLang === 'ar' 
+                ? `مرحباً، أريد أن أطلب هذا العطر (${currentSelectedPerfume}) بحجم ${currentSelectedSize} بسعر ${currentSelectedPrice}. يعطيك العافية!`
+                : `Hello, I would like to order this perfume (${currentSelectedPerfume}) in size ${currentSelectedSize} for ${currentSelectedPrice}.`;
 
             window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
         }
