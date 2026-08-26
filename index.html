@@ -271,16 +271,12 @@
             color: var(--text-color);
         }
         
-        /* Interactive Star Rating Styles */
         .star-rating-select {
             display: flex;
             gap: 5px;
             font-size: 1.8rem;
             cursor: pointer;
             margin: 10px 0;
-            justify-content: flex-start;
-        }
-        [dir="rtl"] .star-rating-select {
             justify-content: flex-start;
         }
         .star-rating-select span {
@@ -351,7 +347,7 @@
         
         <div class="perfumes-grid">
             <!-- D BLACK -->
-            <div class="perfume-card" onclick="showDetail('D BLACK', 'd-black.jpg', "Men's", 'رجالي', 'A luxurious and distinctive fragrance.', 'عطر فخم ومميز يترك انطباعاً ساحراً.')">
+            <div class="perfume-card" onclick="showDetail('D BLACK', 'd-black.jpg', 'Men\'s', 'رجالي', 'A luxurious and distinctive fragrance.', 'عطر فخم ومميز يترك انطباعاً ساحراً.')">
                 <img src="d-black.jpg" alt="D BLACK" class="perfume-img">
                 <div>
                     <h3>D BLACK</h3>
@@ -369,7 +365,7 @@
             </div>
 
             <!-- BERRY -->
-            <div class="perfume-card" onclick="showDetail('BERRY', 'berry.jpg', "Women's", 'نسائي', 'A charming fragrance full of femininity and attraction.', 'عطر ساحر ينبض بالأنوثة والجاذبية.')">
+            <div class="perfume-card" onclick="showDetail('BERRY', 'berry.jpg', 'Women\'s', 'نسائي', 'A charming fragrance full of femininity and attraction.', 'عطر ساحر ينبض بالأنوثة والجاذبية.')">
                 <img src="berry.jpg" alt="BERRY" class="perfume-img">
                 <div>
                     <h3>BERRY</h3>
@@ -405,7 +401,7 @@
             </div>
 
             <!-- BAKARAT -->
-            <div class="perfume-card" onclick="showDetail('BAKARAT', 'bakarat.jpg', "Men's", 'رجالي', 'A calm and luxurious fragrance that leaves an unforgettable trail.', 'عطر هادئ وفخم يترك أثراً لا يُنسى.')">
+            <div class="perfume-card" onclick="showDetail('BAKARAT', 'bakarat.jpg', 'Men\'s', 'رجالي', 'A calm and luxurious fragrance that leaves an unforgettable trail.', 'عطر هادئ وفخم يترك أثراً لا يُنسى.')">
                 <img src="bakarat.jpg" alt="BAKARAT" class="perfume-img">
                 <div>
                     <h3>BAKARAT</h3>
@@ -423,7 +419,7 @@
             </div>
 
             <!-- FAZZA -->
-            <div class="perfume-card" onclick="showDetail('FAZZA', 'FAZZA.jpg', "Women's", 'نسائي', 'Gives you a feeling of freshness and distinction all day long.', 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.')">
+            <div class="perfume-card" onclick="showDetail('FAZZA', 'FAZZA.jpg', 'Women\'s', 'نسائي', 'Gives you a feeling of freshness and distinction all day long.', 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.')">
                 <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
                 <div>
                     <h3>FAZZA</h3>
@@ -441,7 +437,7 @@
             </div>
 
             <!-- LEXUS -->
-            <div class="perfume-card" onclick="showDetail('LEXUS', 'lexus.jpg', "Women's", 'نسائي', 'Absolute elegance and luxury in every spray.', 'أناقة وفخامة مطلقة في كل رشة.')">
+            <div class="perfume-card" onclick="showDetail('LEXUS', 'lexus.jpg', 'Women\'s', 'نسائي', 'Absolute elegance and luxury in every spray.', 'أناقة وفخامة مطلقة في كل رشة.')">
                 <img src="lexus.jpg" alt="LEXUS" class="perfume-img">
                 <div>
                     <h3>LEXUS</h3>
@@ -494,7 +490,7 @@
         <div class="review-form">
             <input type="text" id="reviewer-name" placeholder="Your Name" required>
             
-            <!-- Interactive Stars Instead of Dropdown -->
+            <!-- Interactive Star Selection -->
             <div class="star-rating-select" id="starRatingSelect">
                 <span onclick="setRating(1)">★</span>
                 <span onclick="setRating(2)">★</span>
@@ -511,6 +507,18 @@
                 <div class="stars">⭐⭐⭐⭐⭐</div>
                 <strong>Ahmed Al Marri:</strong> Very luxurious perfumes with great longevity!
             </div>
+            <div class="review-item">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <strong>Rashid Al Ketbi:</strong> Exceptional quality, smells identical to high-end luxury brands!
+            </div>
+            <div class="review-item">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <strong>Fatima Al Suwaidi:</strong> Amazing packaging and the scent lasts all day long. Highly recommended!
+            </div>
+            <div class="review-item">
+                <div class="stars">⭐⭐⭐</div>
+                <strong>Saeed M.:</strong> Good perfume overall, but shipping took a little longer than expected.
+            </div>
         </div>
     </div>
 
@@ -524,7 +532,7 @@
         let currentSelectedPerfume = '';
         let currentSelectedSize = '50 ml';
         let currentSelectedPrice = '220 AED';
-        let selectedRating = 5; // Default rating is 5 stars
+        let selectedRating = 5;
 
         const allPerfumesData = [
             { name: 'D BLACK', img: 'd-black.jpg', tagEn: "Men's", tagAr: 'رجالي', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
@@ -535,7 +543,6 @@
             { name: 'LEXUS', img: 'lexus.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'Absolute elegance and luxury in every spray.', descAr: 'أناقة وفخامة مطلقة في كل رشة.' }
         ];
 
-        // Initialize default stars to 5 selected on load
         window.onload = function() {
             setRating(5);
         };
@@ -734,10 +741,6 @@
                 return;
             }
 
-            // توليد النجوم بناءً على اختيار المستخدم
-            let starsHTML = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-            starsHTML = starsHTML.replace(/★/g, '⭐').replace(/☆/g, '✧');
-
             const list = document.getElementById('reviewsList');
             const newReview = document.createElement('div');
             newReview.className = 'review-item';
@@ -746,7 +749,7 @@
 
             document.getElementById('reviewer-name').value = '';
             document.getElementById('reviewer-comment').value = '';
-            setRating(5); // إعادة تعيين النجوم للافتراضي
+            setRating(5);
         }
     </script>
 </body>
