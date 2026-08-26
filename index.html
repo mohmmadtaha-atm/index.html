@@ -261,7 +261,7 @@
         [dir="rtl"] .reviews-section {
             text-align: right;
         }
-        .review-form input, .review-form textarea, .review-form select {
+        .review-form input, .review-form textarea {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
@@ -270,6 +270,27 @@
             background: var(--bg-color);
             color: var(--text-color);
         }
+        
+        /* Interactive Star Rating Styles */
+        .star-rating-select {
+            display: flex;
+            gap: 5px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin: 10px 0;
+            justify-content: flex-start;
+        }
+        [dir="rtl"] .star-rating-select {
+            justify-content: flex-start;
+        }
+        .star-rating-select span {
+            color: #444;
+            transition: color 0.2s;
+        }
+        .star-rating-select span.selected {
+            color: #d4af37;
+        }
+
         .review-submit {
             background: var(--accent-color);
             color: #000;
@@ -472,13 +493,16 @@
         <h3 id="reviews-title" style="color: var(--accent-color); margin-bottom: 15px;">Customer Reviews</h3>
         <div class="review-form">
             <input type="text" id="reviewer-name" placeholder="Your Name" required>
-            <select id="review-stars">
-                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5 Stars)</option>
-                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4 Stars)</option>
-                <option value="⭐⭐⭐">⭐⭐⭐ (3 Stars)</option>
-                <option value="⭐⭐">⭐⭐ (2 Stars)</option>
-                <option value="⭐">⭐ (1 Star)</option>
-            </select>
+            
+            <!-- Interactive Stars Instead of Dropdown -->
+            <div class="star-rating-select" id="starRatingSelect">
+                <span onclick="setRating(1)">★</span>
+                <span onclick="setRating(2)">★</span>
+                <span onclick="setRating(3)">★</span>
+                <span onclick="setRating(4)">★</span>
+                <span onclick="setRating(5)">★</span>
+            </div>
+
             <textarea id="reviewer-comment" rows="3" placeholder="Write your review here..." required></textarea>
             <button class="review-submit" onclick="addReview()" id="review-btn">Submit Review</button>
         </div>
@@ -500,6 +524,7 @@
         let currentSelectedPerfume = '';
         let currentSelectedSize = '50 ml';
         let currentSelectedPrice = '220 AED';
+        let selectedRating = 5; // Default rating is 5 stars
 
         const allPerfumesData = [
             { name: 'D BLACK', img: 'd-black.jpg', tagEn: "Men's", tagAr: 'رجالي', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
@@ -509,6 +534,23 @@
             { name: 'FAZZA', img: 'FAZZA.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'Gives you a feeling of freshness and distinction all day long.', descAr: 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.' },
             { name: 'LEXUS', img: 'lexus.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'Absolute elegance and luxury in every spray.', descAr: 'أناقة وفخامة مطلقة في كل رشة.' }
         ];
+
+        // Initialize default stars to 5 selected on load
+        window.onload = function() {
+            setRating(5);
+        };
+
+        function setRating(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('#starRatingSelect span');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
 
         function toggleTheme() {
             const html = document.getElementById('html-root');
@@ -685,7 +727,6 @@
 
         function addReview() {
             const name = document.getElementById('reviewer-name').value;
-            const stars = document.getElementById('review-stars').value;
             const comment = document.getElementById('reviewer-comment').value;
             
             if(!name || !comment) {
@@ -693,14 +734,19 @@
                 return;
             }
 
+            // توليد النجوم بناءً على اختيار المستخدم
+            let starsHTML = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+            starsHTML = starsHTML.replace(/★/g, '⭐').replace(/☆/g, '✧');
+
             const list = document.getElementById('reviewsList');
             const newReview = document.createElement('div');
             newReview.className = 'review-item';
-            newReview.innerHTML = `<div class="stars">${stars}</div><strong>${name}:</strong> ${comment}`;
+            newReview.innerHTML = `<div class="stars">${'⭐'.repeat(selectedRating)}</div><strong>${name}:</strong> ${comment}`;
             list.prepend(newReview);
 
             document.getElementById('reviewer-name').value = '';
             document.getElementById('reviewer-comment').value = '';
+            setRating(5); // إعادة تعيين النجوم للافتراضي
         }
     </script>
 </body>
