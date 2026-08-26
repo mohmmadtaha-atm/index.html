@@ -149,7 +149,6 @@
             flex-grow: 1;
         }
 
-        /* Size Buttons side by side */
         .size-buttons-container {
             display: flex;
             gap: 10px;
@@ -198,7 +197,6 @@
             opacity: 0.9;
         }
 
-        /* Detailed View & Suggestions */
         #detail-view {
             display: none;
             max-width: 800px;
@@ -251,7 +249,6 @@
             margin-bottom: 5px;
         }
 
-        /* Reviews Section */
         .reviews-section {
             max-width: 600px;
             margin: 50px auto 20px auto;
@@ -333,11 +330,11 @@
         
         <div class="perfumes-grid">
             <!-- D BLACK -->
-            <div class="perfume-card" onclick="showDetail('D BLACK', 'd-black.jpg', 'Exclusive', 'حصري', 'A luxurious and distinctive fragrance.', 'عطر فخم ومميز يترك انطباعاً ساحراً.')">
+            <div class="perfume-card" onclick="showDetail('D BLACK', 'd-black.jpg', "Men's", 'رجالي', 'A luxurious and distinctive fragrance.', 'عطر فخم ومميز يترك انطباعاً ساحراً.')">
                 <img src="d-black.jpg" alt="D BLACK" class="perfume-img">
                 <div>
                     <h3>D BLACK</h3>
-                    <span class="tag" data-en="Exclusive" data-ar="حصري">Exclusive</span>
+                    <span class="tag" data-en="Men's" data-ar="رجالي">Men's</span>
                     <p class="desc" data-en="A luxurious and distinctive fragrance." data-ar="عطر فخم ومميز يترك انطباعاً ساحراً.">A luxurious and distinctive fragrance.</p>
                 </div>
                 <div>
@@ -459,7 +456,6 @@
                 <div id="detail-price-tag" class="price-tag">220 AED</div>
                 <a id="detail-order-btn" href="#" class="btn-order" onclick="orderWhatsAppDetail()">Order via WhatsApp</a>
                 
-                <!-- زر العودة للرئيسية الإضافي المطلوب -->
                 <button class="control-btn" style="width: 100%; margin-top: 15px;" onclick="goBack()" id="home-return-btn">العودة إلى القائمة الرئيسية</button>
             </div>
         </div>
@@ -506,7 +502,7 @@
         let currentSelectedPrice = '220 AED';
 
         const allPerfumesData = [
-            { name: 'D BLACK', img: 'd-black.jpg', tagEn: 'Exclusive', tagAr: 'حصري', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
+            { name: 'D BLACK', img: 'd-black.jpg', tagEn: "Men's", tagAr: 'رجالي', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
             { name: 'BERRY', img: 'berry.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'A charming fragrance full of femininity and attraction.', descAr: 'عطر ساحر ينبض بالأنوثة والجاذبية.' },
             { name: 'GUCCI MZ', img: 'gucci.jpg', tagEn: 'Unisex', tagAr: 'للجنسين', descEn: 'An exceptional blend combining strong presence and soft details.', descAr: 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.' },
             { name: 'BAKARAT', img: 'bakarat.jpg', tagEn: "Men's", tagAr: 'رجالي', descEn: 'A calm and luxurious fragrance that leaves an unforgettable trail.', descAr: 'عطر هادئ وفخم يترك أثراً لا يُنسى.' },
@@ -676,7 +672,6 @@
             const priceTag = card.querySelector('.price-tag').innerText;
             const sizeText = activeBtn ? activeBtn.innerText.split('\n')[0] : '50 ml';
 
-            // الرسالة تحتوي فقط على معلومات العطر المطلوب حسب طلبك
             let message = `${perfumeName} - ${sizeText} - ${priceTag}`;
 
             window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
