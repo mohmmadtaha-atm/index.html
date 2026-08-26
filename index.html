@@ -104,6 +104,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .perfume-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
         }
 
         [dir="rtl"] .perfume-card {
@@ -191,6 +197,59 @@
             background-color: #20ba5a;
         }
 
+        /* Detailed View & Suggestions */
+        #detail-view {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: left;
+        }
+        [dir="rtl"] #detail-view {
+            text-align: right;
+        }
+        .back-btn {
+            background: var(--border-color);
+            color: var(--text-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .suggestions-container {
+            margin-top: 30px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+        .suggestions-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .suggestion-item {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 8px;
+            width: 150px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .suggestion-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
         /* Reviews Section */
         .reviews-section {
             max-width: 600px;
@@ -257,132 +316,166 @@
         <p class="subtitle" id="site-subtitle">Where luxury meets uniqueness.. Discover your signature scent.</p>
     </header>
 
-    <h2 class="section-title" id="collection-heading">Our Exclusive Collection</h2>
-    
-    <div class="perfumes-grid">
-        <!-- D BLACK -->
-        <div class="perfume-card">
-            <img src="URL_IMAGE_D_BLACK" alt="D BLACK" class="perfume-img">
-            <div>
-                <h3>D BLACK</h3>
-                <span class="tag" data-en="Exclusive" data-ar="حصري">Exclusive</span>
-                <p class="desc" data-en="A luxurious and distinctive fragrance." data-ar="عطر فخم ومميز يترك انطباعاً ساحراً.">A luxurious and distinctive fragrance.</p>
+    <!-- Main Grid Section -->
+    <div id="main-content">
+        <h2 class="section-title" id="collection-heading">Our Exclusive Collection</h2>
+        
+        <div class="perfumes-grid">
+            <!-- D BLACK -->
+            <div class="perfume-card" onclick="showDetail('D BLACK', 'd-black.jpg', 'Exclusive', 'حصري', 'A luxurious and distinctive fragrance.', 'عطر فخم ومميز يترك انطباعاً ساحراً.')">
+                <img src="d-black.jpg" alt="D BLACK" class="perfume-img">
+                <div>
+                    <h3>D BLACK</h3>
+                    <span class="tag" data-en="Exclusive" data-ar="حصري">Exclusive</span>
+                    <p class="desc" data-en="A luxurious and distinctive fragrance." data-ar="عطر فخم ومميز يترك انطباعاً ساحراً.">A luxurious and distinctive fragrance.</p>
+                </div>
+                <div>
+                    <div class="options-box" onclick="event.stopPropagation()">
+                        <label class="size-label">Select Size:</label>
+                        <select class="size-selector" onchange="updatePrice(this)">
+                            <option value="50" data-price="220">50 ml - 220 AED</option>
+                            <option value="100" data-price="320">100 ml - 320 AED</option>
+                        </select>
+                    </div>
+                    <div class="price-tag">220 AED</div>
+                    <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'D BLACK')">Order via WhatsApp</a>
+                </div>
             </div>
-            <div>
+
+            <!-- BERRY -->
+            <div class="perfume-card" onclick="showDetail('BERRY', 'berry.jpg', "Women's 🌸", 'نسائي 🌸', 'A charming fragrance full of femininity and attraction.', 'عطر ساحر ينبض بالأنوثة والجاذبية.')">
+                <img src="berry.jpg" alt="BERRY" class="perfume-img">
+                <div>
+                    <h3>BERRY</h3>
+                    <span class="tag" data-en="Women's 🌸" data-ar="نسائي 🌸">Women's 🌸</span>
+                    <p class="desc" data-en="A charming fragrance full of femininity and attraction." data-ar="عطر ساحر ينبض بالأنوثة والجاذبية.">A charming fragrance full of femininity and attraction.</p>
+                </div>
+                <div>
+                    <div class="options-box" onclick="event.stopPropagation()">
+                        <label class="size-label">Select Size:</label>
+                        <select class="size-selector" onchange="updatePrice(this)">
+                            <option value="50" data-price="220">50 ml - 220 AED</option>
+                            <option value="100" data-price="320">100 ml - 320 AED</option>
+                        </select>
+                    </div>
+                    <div class="price-tag">220 AED</div>
+                    <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'BERRY')">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- GUCCI MZ -->
+            <div class="perfume-card" onclick="showDetail('GUCCI MZ', 'gucci.jpg', 'Unisex ✨', 'للجنسين ✨', 'An exceptional blend combining strong presence and soft details.', 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.')">
+                <img src="gucci.jpg" alt="GUCCI MZ" class="perfume-img">
+                <div>
+                    <h3>GUCCI MZ</h3>
+                    <span class="tag" data-en="Unisex ✨" data-ar="للجنسين ✨">Unisex ✨</span>
+                    <p class="desc" data-en="An exceptional blend combining strong presence and soft details." data-ar="مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.">An exceptional blend combining strong presence and soft details.</p>
+                </div>
+                <div>
+                    <div class="options-box" onclick="event.stopPropagation()">
+                        <label class="size-label">Select Size:</label>
+                        <select class="size-selector" onchange="updatePrice(this)">
+                            <option value="50" data-price="220">50 ml - 220 AED</option>
+                            <option value="100" data-price="320">100 ml - 320 AED</option>
+                        </select>
+                    </div>
+                    <div class="price-tag">220 AED</div>
+                    <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'GUCCI MZ')">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- BAKARAT -->
+            <div class="perfume-card" onclick="showDetail('BAKARAT', 'bakarat.jpg', "Men's 👔", 'رجالي 👔', 'A calm and luxurious fragrance that leaves an unforgettable trail.', 'عطر هادئ وفخم يترك أثراً لا يُنسى.')">
+                <img src="bakarat.jpg" alt="BAKARAT" class="perfume-img">
+                <div>
+                    <h3>BAKARAT</h3>
+                    <span class="tag" data-en="Men's 👔" data-ar="رجالي 👔">Men's 👔</span>
+                    <p class="desc" data-en="A calm and luxurious fragrance that leaves an unforgettable trail." data-ar="عطر هادئ وفخم يترك أثراً لا يُنسى.">A calm and luxurious fragrance that leaves an unforgettable trail.</p>
+                </div>
+                <div>
+                    <div class="options-box" onclick="event.stopPropagation()">
+                        <label class="size-label">Select Size:</label>
+                        <select class="size-selector" onchange="updatePrice(this)">
+                            <option value="50" data-price="220">50 ml - 220 AED</option>
+                            <option value="100" data-price="320">100 ml - 320 AED</option>
+                        </select>
+                    </div>
+                    <div class="price-tag">220 AED</div>
+                    <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'BAKARAT')">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- FAZZA -->
+            <div class="perfume-card" onclick="showDetail('FAZZA', 'FAZZA.jpg', "Women's 🌺", 'نسائي 🌺', 'Gives you a feeling of freshness and distinction all day long.', 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.')">
+                <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
+                <div>
+                    <h3>FAZZA</h3>
+                    <span class="tag" data-en="Women's 🌺" data-ar="نسائي 🌺">Women's 🌺</span>
+                    <p class="desc" data-en="Gives you a feeling of freshness and distinction all day long." data-ar="يمنحك شعوراً بالانتعاش والتميز طوال اليوم.">Gives you a feeling of freshness and distinction all day long.</p>
+                </div>
+                <div>
+                    <div class="options-box" onclick="event.stopPropagation()">
+                        <label class="size-label">Select Size:</label>
+                        <select class="size-selector" onchange="updatePrice(this)">
+                            <option value="50" data-price="220">50 ml - 220 AED</option>
+                            <option value="100" data-price="320">100 ml - 320 AED</option>
+                        </select>
+                    </div>
+                    <div class="price-tag">220 AED</div>
+                    <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'FAZZA')">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- LEXUS -->
+            <div class="perfume-card" onclick="showDetail('LEXUS', 'lexus.jpg', "Women's 👑", 'نسائي 👑', 'Absolute elegance and luxury in every spray.', 'أناقة وفخامة مطلقة في كل رشة.')">
+                <img src="lexus.jpg" alt="LEXUS" class="perfume-img">
+                <div>
+                    <h3>LEXUS</h3>
+                    <span class="tag" data-en="Women's 👑" data-ar="نسائي 👑">Women's 👑</span>
+                    <p class="desc" data-en="Absolute elegance and luxury in every spray." data-ar="أناقة وفخامة مطلقة في كل رشة.">Absolute elegance and luxury in every spray.</p>
+                </div>
+                <div>
+                    <div class="options-box" onclick="event.stopPropagation()">
+                        <label class="size-label">Select Size:</label>
+                        <select class="size-selector" onchange="updatePrice(this)">
+                            <option value="50" data-price="220">50 ml - 220 AED</option>
+                            <option value="100" data-price="320">100 ml - 320 AED</option>
+                        </select>
+                    </div>
+                    <div class="price-tag">220 AED</div>
+                    <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'LEXUS')">Order via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Single Perfume View -->
+    <div id="detail-view">
+        <button class="back-btn" onclick="goBack()" id="back-btn-text">← Back to Collection</button>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
+            <img id="detail-img" src="" alt="" style="width: 280px; height: 320px; object-fit: cover; border-radius: 10px;">
+            <div style="flex: 1; text-align: left;" id="detail-text-box">
+                <h2 id="detail-title" style="color: var(--accent-color); margin-bottom: 10px;"></h2>
+                <span id="detail-tag" class="tag"></span>
+                <p id="detail-desc" style="color: var(--subtext-color); margin: 15px 0;"></p>
+                
                 <div class="options-box">
                     <label class="size-label">Select Size:</label>
-                    <select class="size-selector" onchange="updatePrice(this)">
+                    <select id="detail-size-selector" class="size-selector" onchange="updateDetailPrice(this)">
                         <option value="50" data-price="220">50 ml - 220 AED</option>
                         <option value="100" data-price="320">100 ml - 320 AED</option>
                     </select>
                 </div>
-                <div class="price-tag">220 AED</div>
-                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'D BLACK')">Order via WhatsApp</a>
+                <div id="detail-price-tag" class="price-tag">220 AED</div>
+                <a id="detail-order-btn" href="#" class="btn-order" onclick="orderWhatsAppDetail()">Order via WhatsApp</a>
             </div>
         </div>
 
-        <!-- BERRY -->
-        <div class="perfume-card">
-            <img src="URL_IMAGE_BERRY" alt="BERRY" class="perfume-img">
-            <div>
-                <h3>BERRY</h3>
-                <span class="tag" data-en="Women's 🌸" data-ar="نسائي 🌸">Women's 🌸</span>
-                <p class="desc" data-en="A charming fragrance full of femininity and attraction." data-ar="عطر ساحر ينبض بالأنوثة والجاذبية.">A charming fragrance full of femininity and attraction.</p>
-            </div>
-            <div>
-                <div class="options-box">
-                    <label class="size-label">Select Size:</label>
-                    <select class="size-selector" onchange="updatePrice(this)">
-                        <option value="50" data-price="220">50 ml - 220 AED</option>
-                        <option value="100" data-price="320">100 ml - 320 AED</option>
-                    </select>
-                </div>
-                <div class="price-tag">220 AED</div>
-                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'BERRY')">Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <!-- GUCCI MZ -->
-        <div class="perfume-card">
-            <img src="URL_IMAGE_GUCCI" alt="GUCCI MZ" class="perfume-img">
-            <div>
-                <h3>GUCCI MZ</h3>
-                <span class="tag" data-en="Unisex ✨" data-ar="للجنسين ✨">Unisex ✨</span>
-                <p class="desc" data-en="An exceptional blend combining strong presence and soft details." data-ar="مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.">An exceptional blend combining strong presence and soft details.</p>
-            </div>
-            <div>
-                <div class="options-box">
-                    <label class="size-label">Select Size:</label>
-                    <select class="size-selector" onchange="updatePrice(this)">
-                        <option value="50" data-price="220">50 ml - 220 AED</option>
-                        <option value="100" data-price="320">100 ml - 320 AED</option>
-                    </select>
-                </div>
-                <div class="price-tag">220 AED</div>
-                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'GUCCI MZ')">Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <!-- BAKARAT -->
-        <div class="perfume-card">
-            <img src="URL_IMAGE_BAKARAT" alt="BAKARAT" class="perfume-img">
-            <div>
-                <h3>BAKARAT</h3>
-                <span class="tag" data-en="Men's 👔" data-ar="رجالي 👔">Men's 👔</span>
-                <p class="desc" data-en="A calm and luxurious fragrance that leaves an unforgettable trail." data-ar="عطر هادئ وفخم يترك أثراً لا يُنسى.">A calm and luxurious fragrance that leaves an unforgettable trail.</p>
-            </div>
-            <div>
-                <div class="options-box">
-                    <label class="size-label">Select Size:</label>
-                    <select class="size-selector" onchange="updatePrice(this)">
-                        <option value="50" data-price="220">50 ml - 220 AED</option>
-                        <option value="100" data-price="320">100 ml - 320 AED</option>
-                    </select>
-                </div>
-                <div class="price-tag">220 AED</div>
-                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'BAKARAT')">Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <!-- FAZZA -->
-        <div class="perfume-card">
-            <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
-            <div>
-                <h3>FAZZA</h3>
-                <span class="tag" data-en="Women's 🌺" data-ar="نسائي 🌺">Women's 🌺</span>
-                <p class="desc" data-en="Gives you a feeling of freshness and distinction all day long." data-ar="يمنحك شعوراً بالانتعاش والتميز طوال اليوم.">Gives you a feeling of freshness and distinction all day long.</p>
-            </div>
-            <div>
-                <div class="options-box">
-                    <label class="size-label">Select Size:</label>
-                    <select class="size-selector" onchange="updatePrice(this)">
-                        <option value="50" data-price="220">50 ml - 220 AED</option>
-                        <option value="100" data-price="320">100 ml - 320 AED</option>
-                    </select>
-                </div>
-                <div class="price-tag">220 AED</div>
-                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'FAZZA')">Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <!-- LEXUS -->
-        <div class="perfume-card">
-            <img src="URL_IMAGE_LEXUS" alt="LEXUS" class="perfume-img">
-            <div>
-                <h3>LEXUS</h3>
-                <span class="tag" data-en="Women's 👑" data-ar="نسائي 👑">Women's 👑</span>
-                <p class="desc" data-en="Absolute elegance and luxury in every spray." data-ar="أناقة وفخامة مطلقة في كل رشة.">Absolute elegance and luxury in every spray.</p>
-            </div>
-            <div>
-                <div class="options-box">
-                    <label class="size-label">Select Size:</label>
-                    <select class="size-selector" onchange="updatePrice(this)">
-                        <option value="50" data-price="220">50 ml - 220 AED</option>
-                        <option value="100" data-price="320">100 ml - 320 AED</option>
-                    </select>
-                </div>
-                <div class="price-tag">220 AED</div>
-                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'LEXUS')">Order via WhatsApp</a>
+        <!-- You May Also Like Section -->
+        <div class="suggestions-container">
+            <h3 id="suggestions-title" style="color: var(--accent-color); margin-bottom: 10px;">You May Also Like</h3>
+            <div class="suggestions-grid" id="suggestionsGrid">
+                <!-- Will be filled dynamically -->
             </div>
         </div>
     </div>
@@ -391,13 +484,13 @@
     <div class="reviews-section">
         <h3 id="reviews-title" style="color: var(--accent-color); margin-bottom: 15px;">Customer Reviews</h3>
         <div class="review-form">
-            <input type="text" id="reviewer-name" placeholder="Your Name / اسمك" required>
-            <textarea id="reviewer-comment" rows="3" placeholder="Write your review... / اكتب تقييمك هنا..." required></textarea>
+            <input type="text" id="reviewer-name" placeholder="Your Name" required>
+            <textarea id="reviewer-comment" rows="3" placeholder="Write your review here..." required></textarea>
             <button class="review-submit" onclick="addReview()" id="review-btn">Submit Review</button>
         </div>
         <div class="reviews-list" id="reviewsList">
             <div class="review-item">
-                <strong>أحمد المري:</strong> عطور فخمة جداً وثباتها عالي!
+                <strong>Ahmed Al Marri:</strong> Very luxurious perfumes with great longevity!
             </div>
         </div>
     </div>
@@ -409,6 +502,16 @@
 
     <script>
         let currentLang = 'en';
+        let currentSelectedPerfume = '';
+
+        const allPerfumesData = [
+            { name: 'D BLACK', img: 'd-black.jpg', tagEn: 'Exclusive', tagAr: 'حصري', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
+            { name: 'BERRY', img: 'berry.jpg', tagEn: "Women's 🌸", tagAr: 'نسائي 🌸', descEn: 'A charming fragrance full of femininity and attraction.', descAr: 'عطر ساحر ينبض بالأنوثة والجاذبية.' },
+            { name: 'GUCCI MZ', img: 'gucci.jpg', tagEn: 'Unisex ✨', tagAr: 'للجنسين ✨', descEn: 'An exceptional blend combining strong presence and soft details.', descAr: 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.' },
+            { name: 'BAKARAT', img: 'bakarat.jpg', tagEn: "Men's 👔", tagAr: 'رجالي 👔', descEn: 'A calm and luxurious fragrance that leaves an unforgettable trail.', descAr: 'عطر هادئ وفخم يترك أثراً لا يُنسى.' },
+            { name: 'FAZZA', img: 'FAZZA.jpg', tagEn: "Women's 🌺", tagAr: 'نسائي 🌺', descEn: 'Gives you a feeling of freshness and distinction all day long.', descAr: 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.' },
+            { name: 'LEXUS', img: 'lexus.jpg', tagEn: "Women's 👑", tagAr: 'نسائي 👑', descEn: 'Absolute elegance and luxury in every spray.', descAr: 'أناقة وفخامة مطلقة في كل رشة.' }
+        ];
 
         function toggleTheme() {
             const html = document.getElementById('html-root');
@@ -430,6 +533,7 @@
             if (currentLang === 'en') {
                 currentLang = 'ar';
                 html.setAttribute('dir', 'rtl');
+                document.getElementById('detail-text-box').style.textAlign = 'right';
                 langBtn.innerText = 'English';
                 document.getElementById('site-subtitle').innerText = 'حيث يلتقي الفخامة بالتميز.. اكتشف توقيعك العطري الجديد.';
                 document.getElementById('collection-heading').innerText = 'تشكيلة العطور المميزة';
@@ -438,12 +542,13 @@
                 document.getElementById('reviewer-comment').placeholder = 'اكتب تقييمك هنا...';
                 document.getElementById('review-btn').innerText = 'إرسال التقييم';
                 document.getElementById('footer-text').innerText = 'تابعنا على إنستغرام:';
+                document.getElementById('back-btn-text').innerText = '← العودة إلى القائمة';
+                document.getElementById('suggestions-title').innerText = 'قد يعجبك أيضاً';
                 
                 document.querySelectorAll('.size-label').forEach(el => el.innerText = 'اختر الحجم:');
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'اطلب عبر الواتساب');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 الوضع الليلي' : '☀️ الوضع النهاري';
 
-                // ترجمة التاجات والوصف
                 document.querySelectorAll('.perfume-card').forEach(card => {
                     const tag = card.querySelector('.tag');
                     tag.innerText = tag.getAttribute('data-ar');
@@ -451,9 +556,19 @@
                     desc.innerText = desc.getAttribute('data-ar');
                 });
 
+                // إذا كان في صفحة العطر التفصيلية
+                if(currentSelectedPerfume) {
+                    const found = allPerfumesData.find(p => p.name === currentSelectedPerfume);
+                    if(found) {
+                        document.getElementById('detail-tag').innerText = found.tagAr;
+                        document.getElementById('detail-desc').innerText = found.descAr;
+                    }
+                }
+
             } else {
                 currentLang = 'en';
                 html.setAttribute('dir', 'ltr');
+                document.getElementById('detail-text-box').style.textAlign = 'left';
                 langBtn.innerText = 'العربية';
                 document.getElementById('site-subtitle').innerText = 'Where luxury meets uniqueness.. Discover your signature scent.';
                 document.getElementById('collection-heading').innerText = 'Our Exclusive Collection';
@@ -462,18 +577,27 @@
                 document.getElementById('reviewer-comment').placeholder = 'Write your review here...';
                 document.getElementById('review-btn').innerText = 'Submit Review';
                 document.getElementById('footer-text').innerText = 'Follow us on Instagram:';
+                document.getElementById('back-btn-text').innerText = '← Back to Collection';
+                document.getElementById('suggestions-title').innerText = 'You May Also Like';
 
                 document.querySelectorAll('.size-label').forEach(el => el.innerText = 'Select Size:');
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'Order via WhatsApp');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
 
-                // ترجمة التاجات والوصف للانجليزية
                 document.querySelectorAll('.perfume-card').forEach(card => {
                     const tag = card.querySelector('.tag');
                     tag.innerText = tag.getAttribute('data-en');
                     const desc = card.querySelector('.desc');
                     desc.innerText = desc.getAttribute('data-en');
                 });
+
+                if(currentSelectedPerfume) {
+                    const found = allPerfumesData.find(p => p.name === currentSelectedPerfume);
+                    if(found) {
+                        document.getElementById('detail-tag').innerText = found.tagEn;
+                        document.getElementById('detail-desc').innerText = found.descEn;
+                    }
+                }
             }
         }
 
@@ -482,6 +606,52 @@
             const selectedOption = selectElement.options[selectElement.selectedIndex];
             const price = selectedOption.getAttribute('data-price');
             card.querySelector('.price-tag').innerText = price + ' AED';
+        }
+
+        function updateDetailPrice(selectElement) {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+            document.getElementById('detail-price-tag').innerText = price + ' AED';
+        }
+
+        function showDetail(name, img, tagEn, tagAr, descEn, descAr) {
+            currentSelectedPerfume = name;
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('detail-view').style.display = 'block';
+
+            document.getElementById('detail-title').innerText = name;
+            document.getElementById('detail-img').src = img;
+            document.getElementById('detail-tag').innerText = currentLang === 'ar' ? tagAr : tagEn;
+            document.getElementById('detail-desc').innerText = currentLang === 'ar' ? descAr : descEn;
+            document.getElementById('detail-price-tag').innerText = '220 AED';
+            document.getElementById('detail-size-selector').selectedIndex = 0;
+
+            // بناء قسم الاقتراحات (You May Also Like)
+            const grid = document.getElementById('suggestionsGrid');
+            grid.innerHTML = '';
+            const filtered = allPerfumesData.filter(p => p.name !== name);
+            // اختيار عطرين عشوائيين للاقتراح
+            const shuffled = filtered.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+            shuffled.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <p style="font-weight: bold; font-size: 0.9rem; color: var(--accent-color);">${item.name}</p>
+                `;
+                div.onclick = () => showDetail(item.name, item.img, item.tagEn, item.tagAr, item.descEn, item.descAr);
+                grid.appendChild(div);
+            });
+
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function goBack() {
+            currentSelectedPerfume = '';
+            document.getElementById('detail-view').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function orderWhatsApp(button, perfumeName) {
@@ -495,6 +665,23 @@
                 message = `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${perfumeName}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.`;
             } else {
                 message = `Hello, I would like to order:\n🏷️ *Name:* ${perfumeName}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/971544741541?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function orderWhatsAppDetail() {
+            const select = document.getElementById('detail-size-selector');
+            const size = select.value + ' ml';
+            const price = select.options[select.selectedIndex].getAttribute('data-price') + ' AED';
+
+            let message = "";
+            if (currentLang === 'ar') {
+                message = `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${currentSelectedPerfume}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.`;
+            } else {
+                message = `Hello, I would like to order:\n🏷️ *Name:* ${currentSelectedPerfume}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
             }
 
             const encodedMessage = encodeURIComponent(message);
