@@ -211,25 +211,30 @@
             text-align: right;
         }
 
-        /* تصميم زر العودة على شكل سهم واسم البراند */
-        .back-arrow-btn {
-            background: transparent;
+        /* زر رجوع واضح واحترافي يشبه المواقع الكبرى */
+        .standard-back-btn {
+            background: var(--bg-color);
             color: var(--accent-color);
             border: 1px solid var(--accent-color);
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: bold;
             font-size: 1rem;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
+            gap: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
         }
-        .back-arrow-btn:hover {
+        .standard-back-btn:hover {
             background: var(--accent-color);
             color: #000;
+        }
+        .standard-back-btn span {
+            font-size: 1.2rem;
+            line-height: 1;
         }
 
         .suggestions-container {
@@ -470,9 +475,9 @@
 
     <!-- Detailed Single Perfume View -->
     <div id="detail-view">
-        <!-- زر العودة على شكل سهم واسم البراند -->
-        <button class="back-arrow-btn" onclick="goBack()">
-            <span>←</span> <span id="back-brand-text">TAHA AZR PERFUMES</span>
+        <!-- زر رجوع واضح واحترافي -->
+        <button class="standard-back-btn" onclick="goBack()">
+            <span id="back-arrow-icon">←</span> <span id="back-btn-text">Back to Home</span>
         </button>
         
         <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center;">
@@ -595,7 +600,7 @@
                 document.getElementById('detail-text-box').style.textAlign = 'right';
                 document.querySelector('.reviews-section').style.textAlign = 'right';
                 langBtn.innerText = 'English';
-                document.getElementById('site-subtitle').innerText = 'حيث يلتقي الفخامة بالتميز.. اكتشف توقيعك العطري الجديد.';
+                document.getElementById('site-subtitle').innerText = 'اكتشف سحر العطور الفاخرة التي تترك انطباعاً لا يُنسى.';
                 document.getElementById('collection-heading').innerText = 'تشكيلة العطور المميزة';
                 document.getElementById('reviews-title').innerText = 'تقييمات العملاء';
                 document.getElementById('reviewer-name').placeholder = 'اسمك';
@@ -604,6 +609,10 @@
                 document.getElementById('footer-text').innerText = 'تابعنا على إنستغرام:';
                 document.getElementById('suggestions-title').innerText = 'قد يعجبك أيضاً';
                 
+                // زر الرجوع المحدث
+                document.getElementById('back-btn-text').innerText = 'العودة';
+                document.getElementById('back-arrow-icon').innerText = '→'; // اتجاه السهم يتكيف يميناً في العربية
+
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'اطلب عبر الواتساب');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 الوضع الليلي' : '☀️ الوضع النهاري';
 
@@ -636,6 +645,10 @@
                 document.getElementById('review-btn').innerText = 'Submit Review';
                 document.getElementById('footer-text').innerText = 'Follow us on Instagram:';
                 document.getElementById('suggestions-title').innerText = 'You May Also Like';
+
+                // زر الرجوع بالإنجليزية
+                document.getElementById('back-btn-text').innerText = 'Back';
+                document.getElementById('back-arrow-icon').innerText = '←';
 
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'Order via WhatsApp');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
@@ -730,7 +743,6 @@
             const priceTag = card.querySelector('.price-tag').innerText;
             const sizeText = activeBtn ? activeBtn.innerText.split('\n')[0] : '50 ml';
 
-            // رسالة الواتساب المطورة حسب ذوقك
             let message = currentLang === 'ar' 
                 ? `مرحباً، أريد أن أطلب هذا العطر (${perfumeName}) بحجم ${sizeText} بسعر ${priceTag}. يعطيك العافية!`
                 : `Hello, I would like to order this perfume (${perfumeName}) in size ${sizeText} for ${priceTag}.`;
