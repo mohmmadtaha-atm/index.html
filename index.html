@@ -139,6 +139,7 @@
             border-radius: 5px;
             font-size: 0.8rem;
             margin-bottom: 10px;
+            font-weight: bold;
         }
 
         .desc {
@@ -166,8 +167,8 @@
 
         .options-box select {
             width: 100%;
-            padding: 8px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 6px;
             border: 1px solid var(--border-color);
             background: var(--bg-color);
             color: var(--text-color);
@@ -186,7 +187,7 @@
             width: 100%;
             background-color: #25d366;
             color: white;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             text-decoration: none;
             border-radius: 6px;
@@ -258,8 +259,12 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
+            text-align: left;
         }
-        .review-form input, .review-form textarea {
+        [dir="rtl"] .reviews-section {
+            text-align: right;
+        }
+        .review-form input, .review-form textarea, .review-form select {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
@@ -277,20 +282,26 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
+            width: 100%;
         }
         .reviews-list {
             margin-top: 20px;
-            text-align: left;
-        }
-        [dir="rtl"] .reviews-list {
-            text-align: right;
         }
         .review-item {
             background: var(--bg-color);
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             margin-bottom: 10px;
             border-left: 3px solid var(--accent-color);
+        }
+        [dir="rtl"] .review-item {
+            border-left: none;
+            border-right: 3px solid var(--accent-color);
+        }
+        .stars {
+            color: #d4af37;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
         }
 
         footer {
@@ -343,11 +354,11 @@
             </div>
 
             <!-- BERRY -->
-            <div class="perfume-card" onclick="showDetail('BERRY', 'berry.jpg', "Women's 🌸", 'نسائي 🌸', 'A charming fragrance full of femininity and attraction.', 'عطر ساحر ينبض بالأنوثة والجاذبية.')">
+            <div class="perfume-card" onclick="showDetail('BERRY', 'berry.jpg', "Women's", 'نسائي', 'A charming fragrance full of femininity and attraction.', 'عطر ساحر ينبض بالأنوثة والجاذبية.')">
                 <img src="berry.jpg" alt="BERRY" class="perfume-img">
                 <div>
                     <h3>BERRY</h3>
-                    <span class="tag" data-en="Women's 🌸" data-ar="نسائي 🌸">Women's 🌸</span>
+                    <span class="tag" data-en="Women's" data-ar="نسائي">Women's</span>
                     <p class="desc" data-en="A charming fragrance full of femininity and attraction." data-ar="عطر ساحر ينبض بالأنوثة والجاذبية.">A charming fragrance full of femininity and attraction.</p>
                 </div>
                 <div>
@@ -364,11 +375,11 @@
             </div>
 
             <!-- GUCCI MZ -->
-            <div class="perfume-card" onclick="showDetail('GUCCI MZ', 'gucci.jpg', 'Unisex ✨', 'للجنسين ✨', 'An exceptional blend combining strong presence and soft details.', 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.')">
+            <div class="perfume-card" onclick="showDetail('GUCCI MZ', 'gucci.jpg', 'Unisex', 'للجنسين', 'An exceptional blend combining strong presence and soft details.', 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.')">
                 <img src="gucci.jpg" alt="GUCCI MZ" class="perfume-img">
                 <div>
                     <h3>GUCCI MZ</h3>
-                    <span class="tag" data-en="Unisex ✨" data-ar="للجنسين ✨">Unisex ✨</span>
+                    <span class="tag" data-en="Unisex" data-ar="للجنسين">Unisex</span>
                     <p class="desc" data-en="An exceptional blend combining strong presence and soft details." data-ar="مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.">An exceptional blend combining strong presence and soft details.</p>
                 </div>
                 <div>
@@ -385,11 +396,11 @@
             </div>
 
             <!-- BAKARAT -->
-            <div class="perfume-card" onclick="showDetail('BAKARAT', 'bakarat.jpg', "Men's 👔", 'رجالي 👔', 'A calm and luxurious fragrance that leaves an unforgettable trail.', 'عطر هادئ وفخم يترك أثراً لا يُنسى.')">
+            <div class="perfume-card" onclick="showDetail('BAKARAT', 'bakarat.jpg', "Men's", 'رجالي', 'A calm and luxurious fragrance that leaves an unforgettable trail.', 'عطر هادئ وفخم يترك أثراً لا يُنسى.')">
                 <img src="bakarat.jpg" alt="BAKARAT" class="perfume-img">
                 <div>
                     <h3>BAKARAT</h3>
-                    <span class="tag" data-en="Men's 👔" data-ar="رجالي 👔">Men's 👔</span>
+                    <span class="tag" data-en="Men's" data-ar="رجالي">Men's</span>
                     <p class="desc" data-en="A calm and luxurious fragrance that leaves an unforgettable trail." data-ar="عطر هادئ وفخم يترك أثراً لا يُنسى.">A calm and luxurious fragrance that leaves an unforgettable trail.</p>
                 </div>
                 <div>
@@ -406,11 +417,11 @@
             </div>
 
             <!-- FAZZA -->
-            <div class="perfume-card" onclick="showDetail('FAZZA', 'FAZZA.jpg', "Women's 🌺", 'نسائي 🌺', 'Gives you a feeling of freshness and distinction all day long.', 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.')">
+            <div class="perfume-card" onclick="showDetail('FAZZA', 'FAZZA.jpg', "Women's", 'نسائي', 'Gives you a feeling of freshness and distinction all day long.', 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.')">
                 <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
                 <div>
                     <h3>FAZZA</h3>
-                    <span class="tag" data-en="Women's 🌺" data-ar="نسائي 🌺">Women's 🌺</span>
+                    <span class="tag" data-en="Women's" data-ar="نسائي">Women's</span>
                     <p class="desc" data-en="Gives you a feeling of freshness and distinction all day long." data-ar="يمنحك شعوراً بالانتعاش والتميز طوال اليوم.">Gives you a feeling of freshness and distinction all day long.</p>
                 </div>
                 <div>
@@ -427,11 +438,11 @@
             </div>
 
             <!-- LEXUS -->
-            <div class="perfume-card" onclick="showDetail('LEXUS', 'lexus.jpg', "Women's 👑", 'نسائي 👑', 'Absolute elegance and luxury in every spray.', 'أناقة وفخامة مطلقة في كل رشة.')">
+            <div class="perfume-card" onclick="showDetail('LEXUS', 'lexus.jpg', "Women's", 'نسائي', 'Absolute elegance and luxury in every spray.', 'أناقة وفخامة مطلقة في كل رشة.')">
                 <img src="lexus.jpg" alt="LEXUS" class="perfume-img">
                 <div>
                     <h3>LEXUS</h3>
-                    <span class="tag" data-en="Women's 👑" data-ar="نسائي 👑">Women's 👑</span>
+                    <span class="tag" data-en="Women's" data-ar="نسائي">Women's</span>
                     <p class="desc" data-en="Absolute elegance and luxury in every spray." data-ar="أناقة وفخامة مطلقة في كل رشة.">Absolute elegance and luxury in every spray.</p>
                 </div>
                 <div>
@@ -474,9 +485,7 @@
         <!-- You May Also Like Section -->
         <div class="suggestions-container">
             <h3 id="suggestions-title" style="color: var(--accent-color); margin-bottom: 10px;">You May Also Like</h3>
-            <div class="suggestions-grid" id="suggestionsGrid">
-                <!-- Will be filled dynamically -->
-            </div>
+            <div class="suggestions-grid" id="suggestionsGrid"></div>
         </div>
     </div>
 
@@ -485,11 +494,19 @@
         <h3 id="reviews-title" style="color: var(--accent-color); margin-bottom: 15px;">Customer Reviews</h3>
         <div class="review-form">
             <input type="text" id="reviewer-name" placeholder="Your Name" required>
+            <select id="review-stars">
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4 Stars)</option>
+                <option value="⭐⭐⭐">⭐⭐⭐ (3 Stars)</option>
+                <option value="⭐⭐">⭐⭐ (2 Stars)</option>
+                <option value="⭐">⭐ (1 Star)</option>
+            </select>
             <textarea id="reviewer-comment" rows="3" placeholder="Write your review here..." required></textarea>
             <button class="review-submit" onclick="addReview()" id="review-btn">Submit Review</button>
         </div>
         <div class="reviews-list" id="reviewsList">
             <div class="review-item">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <strong>Ahmed Al Marri:</strong> Very luxurious perfumes with great longevity!
             </div>
         </div>
@@ -506,11 +523,11 @@
 
         const allPerfumesData = [
             { name: 'D BLACK', img: 'd-black.jpg', tagEn: 'Exclusive', tagAr: 'حصري', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
-            { name: 'BERRY', img: 'berry.jpg', tagEn: "Women's 🌸", tagAr: 'نسائي 🌸', descEn: 'A charming fragrance full of femininity and attraction.', descAr: 'عطر ساحر ينبض بالأنوثة والجاذبية.' },
-            { name: 'GUCCI MZ', img: 'gucci.jpg', tagEn: 'Unisex ✨', tagAr: 'للجنسين ✨', descEn: 'An exceptional blend combining strong presence and soft details.', descAr: 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.' },
-            { name: 'BAKARAT', img: 'bakarat.jpg', tagEn: "Men's 👔", tagAr: 'رجالي 👔', descEn: 'A calm and luxurious fragrance that leaves an unforgettable trail.', descAr: 'عطر هادئ وفخم يترك أثراً لا يُنسى.' },
-            { name: 'FAZZA', img: 'FAZZA.jpg', tagEn: "Women's 🌺", tagAr: 'نسائي 🌺', descEn: 'Gives you a feeling of freshness and distinction all day long.', descAr: 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.' },
-            { name: 'LEXUS', img: 'lexus.jpg', tagEn: "Women's 👑", tagAr: 'نسائي 👑', descEn: 'Absolute elegance and luxury in every spray.', descAr: 'أناقة وفخامة مطلقة في كل رشة.' }
+            { name: 'BERRY', img: 'berry.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'A charming fragrance full of femininity and attraction.', descAr: 'عطر ساحر ينبض بالأنوثة والجاذبية.' },
+            { name: 'GUCCI MZ', img: 'gucci.jpg', tagEn: 'Unisex', tagAr: 'للجنسين', descEn: 'An exceptional blend combining strong presence and soft details.', descAr: 'مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.' },
+            { name: 'BAKARAT', img: 'bakarat.jpg', tagEn: "Men's", tagAr: 'رجالي', descEn: 'A calm and luxurious fragrance that leaves an unforgettable trail.', descAr: 'عطر هادئ وفخم يترك أثراً لا يُنسى.' },
+            { name: 'FAZZA', img: 'FAZZA.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'Gives you a feeling of freshness and distinction all day long.', descAr: 'يمنحك شعوراً بالانتعاش والتميز طوال اليوم.' },
+            { name: 'LEXUS', img: 'lexus.jpg', tagEn: "Women's", tagAr: 'نسائي', descEn: 'Absolute elegance and luxury in every spray.', descAr: 'أناقة وفخامة مطلقة في كل رشة.' }
         ];
 
         function toggleTheme() {
@@ -534,6 +551,7 @@
                 currentLang = 'ar';
                 html.setAttribute('dir', 'rtl');
                 document.getElementById('detail-text-box').style.textAlign = 'right';
+                document.querySelector('.reviews-section').style.textAlign = 'right';
                 langBtn.innerText = 'English';
                 document.getElementById('site-subtitle').innerText = 'حيث يلتقي الفخامة بالتميز.. اكتشف توقيعك العطري الجديد.';
                 document.getElementById('collection-heading').innerText = 'تشكيلة العطور المميزة';
@@ -556,7 +574,6 @@
                     desc.innerText = desc.getAttribute('data-ar');
                 });
 
-                // إذا كان في صفحة العطر التفصيلية
                 if(currentSelectedPerfume) {
                     const found = allPerfumesData.find(p => p.name === currentSelectedPerfume);
                     if(found) {
@@ -569,6 +586,7 @@
                 currentLang = 'en';
                 html.setAttribute('dir', 'ltr');
                 document.getElementById('detail-text-box').style.textAlign = 'left';
+                document.querySelector('.reviews-section').style.textAlign = 'left';
                 langBtn.innerText = 'العربية';
                 document.getElementById('site-subtitle').innerText = 'Where luxury meets uniqueness.. Discover your signature scent.';
                 document.getElementById('collection-heading').innerText = 'Our Exclusive Collection';
@@ -626,11 +644,9 @@
             document.getElementById('detail-price-tag').innerText = '220 AED';
             document.getElementById('detail-size-selector').selectedIndex = 0;
 
-            // بناء قسم الاقتراحات (You May Also Like)
             const grid = document.getElementById('suggestionsGrid');
             grid.innerHTML = '';
             const filtered = allPerfumesData.filter(p => p.name !== name);
-            // اختيار عطرين عشوائيين للاقتراح
             const shuffled = filtered.sort(() => 0.5 - Math.random()).slice(0, 2);
 
             shuffled.forEach(item => {
@@ -660,16 +676,11 @@
             const size = select.value + ' ml';
             const price = select.options[select.selectedIndex].getAttribute('data-price') + ' AED';
 
-            let message = "";
-            if (currentLang === 'ar') {
-                message = `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${perfumeName}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.`;
-            } else {
-                message = `Hello, I would like to order:\n🏷️ *Name:* ${perfumeName}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
-            }
+            let message = currentLang === 'ar' ? 
+                `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${perfumeName}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.` :
+                `Hello, I would like to order:\n🏷️ *Name:* ${perfumeName}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/971544741541?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function orderWhatsAppDetail() {
@@ -677,21 +688,18 @@
             const size = select.value + ' ml';
             const price = select.options[select.selectedIndex].getAttribute('data-price') + ' AED';
 
-            let message = "";
-            if (currentLang === 'ar') {
-                message = `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${currentSelectedPerfume}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.`;
-            } else {
-                message = `Hello, I would like to order:\n🏷️ *Name:* ${currentSelectedPerfume}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
-            }
+            let message = currentLang === 'ar' ? 
+                `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${currentSelectedPerfume}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.` :
+                `Hello, I would like to order:\n🏷️ *Name:* ${currentSelectedPerfume}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/971544741541?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function addReview() {
             const name = document.getElementById('reviewer-name').value;
+            const stars = document.getElementById('review-stars').value;
             const comment = document.getElementById('reviewer-comment').value;
+            
             if(!name || !comment) {
                 alert(currentLang === 'ar' ? 'الرجاء إدخال الاسم والتقييم' : 'Please enter name and review');
                 return;
@@ -700,7 +708,7 @@
             const list = document.getElementById('reviewsList');
             const newReview = document.createElement('div');
             newReview.className = 'review-item';
-            newReview.innerHTML = `<strong>${name}:</strong> ${comment}`;
+            newReview.innerHTML = `<div class="stars">${stars}</div><strong>${name}:</strong> ${comment}`;
             list.prepend(newReview);
 
             document.getElementById('reviewer-name').value = '';
