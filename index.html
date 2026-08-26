@@ -149,30 +149,30 @@
             flex-grow: 1;
         }
 
-        .options-box {
+        /* Size Buttons side by side */
+        .size-buttons-container {
+            display: flex;
+            gap: 10px;
             margin-bottom: 15px;
-            text-align: left;
-        }
-        [dir="rtl"] .options-box {
-            text-align: right;
         }
 
-        .options-box label {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-            color: var(--text-color);
-            font-weight: bold;
-        }
-
-        .options-box select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+        .size-btn {
+            flex: 1;
             background: var(--bg-color);
+            border: 1px solid var(--border-color);
             color: var(--text-color);
-            font-size: 0.95rem;
+            padding: 8px 5px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .size-btn.active {
+            border-color: var(--accent-color);
+            background: var(--card-bg);
+            color: var(--accent-color);
+            font-weight: bold;
         }
 
         .price-tag {
@@ -185,8 +185,8 @@
         .btn-order {
             display: block;
             width: 100%;
-            background-color: #25d366;
-            color: white;
+            background-color: var(--accent-color);
+            color: #000;
             padding: 12px;
             text-align: center;
             text-decoration: none;
@@ -195,7 +195,7 @@
             font-size: 1rem;
         }
         .btn-order:hover {
-            background-color: #20ba5a;
+            opacity: 0.9;
         }
 
         /* Detailed View & Suggestions */
@@ -341,12 +341,9 @@
                     <p class="desc" data-en="A luxurious and distinctive fragrance." data-ar="عطر فخم ومميز يترك انطباعاً ساحراً.">A luxurious and distinctive fragrance.</p>
                 </div>
                 <div>
-                    <div class="options-box" onclick="event.stopPropagation()">
-                        <label class="size-label">Select Size:</label>
-                        <select class="size-selector" onchange="updatePrice(this)">
-                            <option value="50" data-price="220">50 ml - 220 AED</option>
-                            <option value="100" data-price="320">100 ml - 320 AED</option>
-                        </select>
+                    <div class="size-buttons-container" onclick="event.stopPropagation()">
+                        <button type="button" class="size-btn active" onclick="selectSize(this, 50, 220)">50 ml<br>220 AED</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, 100, 320)">100 ml<br>320 AED</button>
                     </div>
                     <div class="price-tag">220 AED</div>
                     <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'D BLACK')">Order via WhatsApp</a>
@@ -362,12 +359,9 @@
                     <p class="desc" data-en="A charming fragrance full of femininity and attraction." data-ar="عطر ساحر ينبض بالأنوثة والجاذبية.">A charming fragrance full of femininity and attraction.</p>
                 </div>
                 <div>
-                    <div class="options-box" onclick="event.stopPropagation()">
-                        <label class="size-label">Select Size:</label>
-                        <select class="size-selector" onchange="updatePrice(this)">
-                            <option value="50" data-price="220">50 ml - 220 AED</option>
-                            <option value="100" data-price="320">100 ml - 320 AED</option>
-                        </select>
+                    <div class="size-buttons-container" onclick="event.stopPropagation()">
+                        <button type="button" class="size-btn active" onclick="selectSize(this, 50, 220)">50 ml<br>220 AED</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, 100, 320)">100 ml<br>320 AED</button>
                     </div>
                     <div class="price-tag">220 AED</div>
                     <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'BERRY')">Order via WhatsApp</a>
@@ -383,12 +377,9 @@
                     <p class="desc" data-en="An exceptional blend combining strong presence and soft details." data-ar="مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.">An exceptional blend combining strong presence and soft details.</p>
                 </div>
                 <div>
-                    <div class="options-box" onclick="event.stopPropagation()">
-                        <label class="size-label">Select Size:</label>
-                        <select class="size-selector" onchange="updatePrice(this)">
-                            <option value="50" data-price="220">50 ml - 220 AED</option>
-                            <option value="100" data-price="320">100 ml - 320 AED</option>
-                        </select>
+                    <div class="size-buttons-container" onclick="event.stopPropagation()">
+                        <button type="button" class="size-btn active" onclick="selectSize(this, 50, 220)">50 ml<br>220 AED</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, 100, 320)">100 ml<br>320 AED</button>
                     </div>
                     <div class="price-tag">220 AED</div>
                     <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'GUCCI MZ')">Order via WhatsApp</a>
@@ -404,12 +395,9 @@
                     <p class="desc" data-en="A calm and luxurious fragrance that leaves an unforgettable trail." data-ar="عطر هادئ وفخم يترك أثراً لا يُنسى.">A calm and luxurious fragrance that leaves an unforgettable trail.</p>
                 </div>
                 <div>
-                    <div class="options-box" onclick="event.stopPropagation()">
-                        <label class="size-label">Select Size:</label>
-                        <select class="size-selector" onchange="updatePrice(this)">
-                            <option value="50" data-price="220">50 ml - 220 AED</option>
-                            <option value="100" data-price="320">100 ml - 320 AED</option>
-                        </select>
+                    <div class="size-buttons-container" onclick="event.stopPropagation()">
+                        <button type="button" class="size-btn active" onclick="selectSize(this, 50, 220)">50 ml<br>220 AED</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, 100, 320)">100 ml<br>320 AED</button>
                     </div>
                     <div class="price-tag">220 AED</div>
                     <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'BAKARAT')">Order via WhatsApp</a>
@@ -425,12 +413,9 @@
                     <p class="desc" data-en="Gives you a feeling of freshness and distinction all day long." data-ar="يمنحك شعوراً بالانتعاش والتميز طوال اليوم.">Gives you a feeling of freshness and distinction all day long.</p>
                 </div>
                 <div>
-                    <div class="options-box" onclick="event.stopPropagation()">
-                        <label class="size-label">Select Size:</label>
-                        <select class="size-selector" onchange="updatePrice(this)">
-                            <option value="50" data-price="220">50 ml - 220 AED</option>
-                            <option value="100" data-price="320">100 ml - 320 AED</option>
-                        </select>
+                    <div class="size-buttons-container" onclick="event.stopPropagation()">
+                        <button type="button" class="size-btn active" onclick="selectSize(this, 50, 220)">50 ml<br>220 AED</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, 100, 320)">100 ml<br>320 AED</button>
                     </div>
                     <div class="price-tag">220 AED</div>
                     <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'FAZZA')">Order via WhatsApp</a>
@@ -446,12 +431,9 @@
                     <p class="desc" data-en="Absolute elegance and luxury in every spray." data-ar="أناقة وفخامة مطلقة في كل رشة.">Absolute elegance and luxury in every spray.</p>
                 </div>
                 <div>
-                    <div class="options-box" onclick="event.stopPropagation()">
-                        <label class="size-label">Select Size:</label>
-                        <select class="size-selector" onchange="updatePrice(this)">
-                            <option value="50" data-price="220">50 ml - 220 AED</option>
-                            <option value="100" data-price="320">100 ml - 320 AED</option>
-                        </select>
+                    <div class="size-buttons-container" onclick="event.stopPropagation()">
+                        <button type="button" class="size-btn active" onclick="selectSize(this, 50, 220)">50 ml<br>220 AED</button>
+                        <button type="button" class="size-btn" onclick="selectSize(this, 100, 320)">100 ml<br>320 AED</button>
                     </div>
                     <div class="price-tag">220 AED</div>
                     <a href="#" class="btn-order" onclick="event.stopPropagation(); orderWhatsApp(this, 'LEXUS')">Order via WhatsApp</a>
@@ -470,15 +452,15 @@
                 <span id="detail-tag" class="tag"></span>
                 <p id="detail-desc" style="color: var(--subtext-color); margin: 15px 0;"></p>
                 
-                <div class="options-box">
-                    <label class="size-label">Select Size:</label>
-                    <select id="detail-size-selector" class="size-selector" onchange="updateDetailPrice(this)">
-                        <option value="50" data-price="220">50 ml - 220 AED</option>
-                        <option value="100" data-price="320">100 ml - 320 AED</option>
-                    </select>
+                <div class="size-buttons-container">
+                    <button type="button" class="size-btn active" id="detail-btn-50" onclick="selectDetailSize(50, 220)">50 ml<br>220 AED</button>
+                    <button type="button" class="size-btn" id="detail-btn-100" onclick="selectDetailSize(100, 320)">100 ml<br>320 AED</button>
                 </div>
                 <div id="detail-price-tag" class="price-tag">220 AED</div>
                 <a id="detail-order-btn" href="#" class="btn-order" onclick="orderWhatsAppDetail()">Order via WhatsApp</a>
+                
+                <!-- زر العودة للرئيسية الإضافي المطلوب -->
+                <button class="control-btn" style="width: 100%; margin-top: 15px;" onclick="goBack()" id="home-return-btn">العودة إلى القائمة الرئيسية</button>
             </div>
         </div>
 
@@ -520,6 +502,8 @@
     <script>
         let currentLang = 'en';
         let currentSelectedPerfume = '';
+        let currentSelectedSize = '50 ml';
+        let currentSelectedPrice = '220 AED';
 
         const allPerfumesData = [
             { name: 'D BLACK', img: 'd-black.jpg', tagEn: 'Exclusive', tagAr: 'حصري', descEn: 'A luxurious and distinctive fragrance.', descAr: 'عطر فخم ومميز يترك انطباعاً ساحراً.' },
@@ -561,9 +545,9 @@
                 document.getElementById('review-btn').innerText = 'إرسال التقييم';
                 document.getElementById('footer-text').innerText = 'تابعنا على إنستغرام:';
                 document.getElementById('back-btn-text').innerText = '← العودة إلى القائمة';
+                document.getElementById('home-return-btn').innerText = 'العودة إلى القائمة الرئيسية';
                 document.getElementById('suggestions-title').innerText = 'قد يعجبك أيضاً';
                 
-                document.querySelectorAll('.size-label').forEach(el => el.innerText = 'اختر الحجم:');
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'اطلب عبر الواتساب');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 الوضع الليلي' : '☀️ الوضع النهاري';
 
@@ -596,9 +580,9 @@
                 document.getElementById('review-btn').innerText = 'Submit Review';
                 document.getElementById('footer-text').innerText = 'Follow us on Instagram:';
                 document.getElementById('back-btn-text').innerText = '← Back to Collection';
+                document.getElementById('home-return-btn').innerText = 'Back to Main Collection';
                 document.getElementById('suggestions-title').innerText = 'You May Also Like';
 
-                document.querySelectorAll('.size-label').forEach(el => el.innerText = 'Select Size:');
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'Order via WhatsApp');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
 
@@ -619,21 +603,35 @@
             }
         }
 
-        function updatePrice(selectElement) {
-            const card = selectElement.closest('.perfume-card');
-            const selectedOption = selectElement.options[selectElement.selectedIndex];
-            const price = selectedOption.getAttribute('data-price');
+        function selectSize(btn, ml, price) {
+            const container = btn.closest('.size-buttons-container');
+            container.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const card = btn.closest('.perfume-card');
             card.querySelector('.price-tag').innerText = price + ' AED';
         }
 
-        function updateDetailPrice(selectElement) {
-            const selectedOption = selectElement.options[selectElement.selectedIndex];
-            const price = selectedOption.getAttribute('data-price');
-            document.getElementById('detail-price-tag').innerText = price + ' AED';
+        function selectDetailSize(ml, price) {
+            document.getElementById('detail-btn-50').classList.remove('active');
+            document.getElementById('detail-btn-100').classList.remove('active');
+            
+            if(ml === 50) {
+                document.getElementById('detail-btn-50').classList.add('active');
+            } else {
+                document.getElementById('detail-btn-100').classList.add('active');
+            }
+
+            currentSelectedSize = ml + ' ml';
+            currentSelectedPrice = price + ' AED';
+            document.getElementById('detail-price-tag').innerText = currentSelectedPrice;
         }
 
         function showDetail(name, img, tagEn, tagAr, descEn, descAr) {
             currentSelectedPerfume = name;
+            currentSelectedSize = '50 ml';
+            currentSelectedPrice = '220 AED';
+
             document.getElementById('main-content').style.display = 'none';
             document.getElementById('detail-view').style.display = 'block';
 
@@ -642,7 +640,9 @@
             document.getElementById('detail-tag').innerText = currentLang === 'ar' ? tagAr : tagEn;
             document.getElementById('detail-desc').innerText = currentLang === 'ar' ? descAr : descEn;
             document.getElementById('detail-price-tag').innerText = '220 AED';
-            document.getElementById('detail-size-selector').selectedIndex = 0;
+            
+            document.getElementById('detail-btn-50').classList.add('active');
+            document.getElementById('detail-btn-100').classList.remove('active');
 
             const grid = document.getElementById('suggestionsGrid');
             grid.innerHTML = '';
@@ -672,25 +672,18 @@
 
         function orderWhatsApp(button, perfumeName) {
             const card = button.closest('.perfume-card');
-            const select = card.querySelector('.size-selector');
-            const size = select.value + ' ml';
-            const price = select.options[select.selectedIndex].getAttribute('data-price') + ' AED';
+            const activeBtn = card.querySelector('.size-btn.active');
+            const priceTag = card.querySelector('.price-tag').innerText;
+            const sizeText = activeBtn ? activeBtn.innerText.split('\n')[0] : '50 ml';
 
-            let message = currentLang === 'ar' ? 
-                `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${perfumeName}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.` :
-                `Hello, I would like to order:\n🏷️ *Name:* ${perfumeName}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
+            // الرسالة تحتوي فقط على معلومات العطر المطلوب حسب طلبك
+            let message = `${perfumeName} - ${sizeText} - ${priceTag}`;
 
             window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function orderWhatsAppDetail() {
-            const select = document.getElementById('detail-size-selector');
-            const size = select.value + ' ml';
-            const price = select.options[select.selectedIndex].getAttribute('data-price') + ' AED';
-
-            let message = currentLang === 'ar' ? 
-                `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${currentSelectedPerfume}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.` :
-                `Hello, I would like to order:\n🏷️ *Name:* ${currentSelectedPerfume}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
+            let message = `${currentSelectedPerfume} - ${currentSelectedSize} - ${currentSelectedPrice}`;
 
             window.open(`https://wa.me/971544741541?text=${encodeURIComponent(message)}`, '_blank');
         }
