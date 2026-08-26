@@ -1,165 +1,524 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TAHA AZR PERFUMES</title>
     <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --text-color: #ffffff;
+            --accent-color: #d4af37;
+            --border-color: #333333;
+            --subtext-color: #b0b0b0;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-color: #111111;
+            --accent-color: #b8860b;
+            --border-color: #ddd3d3;
+            --subtext-color: #666666;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tahoma', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         body {
-            background-color: #111;
-            color: #fff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             text-align: center;
             padding: 20px;
         }
-        header {
-            margin: 40px 0;
+
+        .top-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
         }
+
+        .control-btn {
+            background: var(--card-bg);
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .control-btn:hover {
+            opacity: 0.8;
+        }
+
+        header {
+            margin: 30px 0;
+        }
+
         h1 {
             font-size: 2.5rem;
-            color: #d4af37;
+            color: var(--accent-color);
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
+
         p.subtitle {
             font-size: 1.1rem;
-            color: #ccc;
+            color: var(--subtext-color);
         }
+
         .section-title {
-            color: #d4af37;
+            color: var(--accent-color);
             margin: 40px 0 20px 0;
             font-size: 1.8rem;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 2px solid var(--accent-color);
             display: inline-block;
             padding-bottom: 5px;
         }
+
         .perfumes-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            max-width: 900px;
+            gap: 25px;
+            max-width: 1100px;
             margin: 0 auto;
         }
+
         .perfume-card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
             padding: 20px;
-            width: 280px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        [dir="rtl"] .perfume-card {
             text-align: right;
         }
-        .perfume-card h3 {
-            color: #d4af37;
-            margin-bottom: 8px;
+
+        .perfume-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #222;
         }
+
+        .perfume-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+
         .tag {
             display: inline-block;
-            background: #333;
-            color: #fff;
+            background: var(--border-color);
+            color: var(--text-color);
             padding: 3px 8px;
             border-radius: 5px;
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-        .pricing-box {
-            background: #1a1a1a;
-            border: 1px solid #d4af37;
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 400px;
-            margin: 30px auto;
-        }
-        .pricing-box h3 {
-            color: #d4af37;
+            font-size: 0.8rem;
             margin-bottom: 10px;
         }
-        .btn-whatsapp {
-            display: inline-block;
+
+        .desc {
+            font-size: 0.95rem;
+            color: var(--subtext-color);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .options-box {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        [dir="rtl"] .options-box {
+            text-align: right;
+        }
+
+        .options-box label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .options-box select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .price-tag {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-order {
+            display: block;
+            width: 100%;
             background-color: #25d366;
             color: white;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 10px;
+            text-align: center;
             text-decoration: none;
-            border-radius: 30px;
-            margin: 30px 0;
+            border-radius: 6px;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            font-size: 1rem;
         }
-        .btn-whatsapp:hover {
+        .btn-order:hover {
             background-color: #20ba5a;
         }
+
+        /* Reviews Section */
+        .reviews-section {
+            max-width: 600px;
+            margin: 50px auto 20px auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .review-form input, .review-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .review-submit {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .reviews-list {
+            margin-top: 20px;
+            text-align: left;
+        }
+        [dir="rtl"] .reviews-list {
+            text-align: right;
+        }
+        .review-item {
+            background: var(--bg-color);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
         footer {
             margin-top: 40px;
-            color: #777;
+            color: var(--subtext-color);
             font-size: 0.9rem;
         }
         footer a {
-            color: #d4af37;
+            color: var(--accent-color);
             text-decoration: none;
         }
     </style>
 </head>
 <body>
 
+    <div class="top-controls">
+        <button class="control-btn" onclick="toggleTheme()" id="theme-btn">☀️ Light Mode</button>
+        <button class="control-btn" onclick="toggleLanguage()" id="lang-btn">العربية</button>
+    </div>
+
     <header>
-        <h1>TAHA AZR PERFUMES</h1>
-        <p class="subtitle">حيث يلتقي الفخامة بالتميز.. اكتشف توقيعك العطري الجديد</p>
+        <h1 id="site-title">TAHA AZR PERFUMES</h1>
+        <p class="subtitle" id="site-subtitle">Where luxury meets uniqueness.. Discover your signature scent.</p>
     </header>
 
-    <h2 class="section-title">تشكيلة العطور المميزة</h2>
+    <h2 class="section-title" id="collection-heading">Our Exclusive Collection</h2>
+    
     <div class="perfumes-grid">
+        <!-- D BLACK -->
         <div class="perfume-card">
-            <h3>D BLACK</h3>
-            <p>عطر فخم ومميز.</p>
+            <img src="URL_IMAGE_D_BLACK" alt="D BLACK" class="perfume-img">
+            <div>
+                <h3>D BLACK</h3>
+                <span class="tag" data-en="Exclusive" data-ar="حصري">Exclusive</span>
+                <p class="desc" data-en="A luxurious and distinctive fragrance." data-ar="عطر فخم ومميز يترك انطباعاً ساحراً.">A luxurious and distinctive fragrance.</p>
+            </div>
+            <div>
+                <div class="options-box">
+                    <label class="size-label">Select Size:</label>
+                    <select class="size-selector" onchange="updatePrice(this)">
+                        <option value="50" data-price="220">50 ml - 220 AED</option>
+                        <option value="100" data-price="320">100 ml - 320 AED</option>
+                    </select>
+                </div>
+                <div class="price-tag">220 AED</div>
+                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'D BLACK')">Order via WhatsApp</a>
+            </div>
         </div>
+
+        <!-- BERRY -->
         <div class="perfume-card">
-            <h3>BERRY</h3>
-            <p>عطر ساحر ينبض بالأنوثة.</p>
-            <span class="tag">نسائي 🌸</span>
+            <img src="URL_IMAGE_BERRY" alt="BERRY" class="perfume-img">
+            <div>
+                <h3>BERRY</h3>
+                <span class="tag" data-en="Women's 🌸" data-ar="نسائي 🌸">Women's 🌸</span>
+                <p class="desc" data-en="A charming fragrance full of femininity and attraction." data-ar="عطر ساحر ينبض بالأنوثة والجاذبية.">A charming fragrance full of femininity and attraction.</p>
+            </div>
+            <div>
+                <div class="options-box">
+                    <label class="size-label">Select Size:</label>
+                    <select class="size-selector" onchange="updatePrice(this)">
+                        <option value="50" data-price="220">50 ml - 220 AED</option>
+                        <option value="100" data-price="320">100 ml - 320 AED</option>
+                    </select>
+                </div>
+                <div class="price-tag">220 AED</div>
+                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'BERRY')">Order via WhatsApp</a>
+            </div>
         </div>
+
+        <!-- GUCCI MZ -->
         <div class="perfume-card">
-            <h3>GUCCI MZ</h3>
-            <p>مزيج استثنائي يجمع بين قوة الحضور والنعومة.</p>
-            <span class="tag">للجنسين (Unisex) ✨</span>
+            <img src="URL_IMAGE_GUCCI" alt="GUCCI MZ" class="perfume-img">
+            <div>
+                <h3>GUCCI MZ</h3>
+                <span class="tag" data-en="Unisex ✨" data-ar="للجنسين ✨">Unisex ✨</span>
+                <p class="desc" data-en="An exceptional blend combining strong presence and soft details." data-ar="مزيج استثنائي يجمع بين قوة الحضور ونعومة التفاصيل.">An exceptional blend combining strong presence and soft details.</p>
+            </div>
+            <div>
+                <div class="options-box">
+                    <label class="size-label">Select Size:</label>
+                    <select class="size-selector" onchange="updatePrice(this)">
+                        <option value="50" data-price="220">50 ml - 220 AED</option>
+                        <option value="100" data-price="320">100 ml - 320 AED</option>
+                    </select>
+                </div>
+                <div class="price-tag">220 AED</div>
+                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'GUCCI MZ')">Order via WhatsApp</a>
+            </div>
         </div>
+
+        <!-- BAKARAT -->
         <div class="perfume-card">
-            <h3>BAKARAT</h3>
-            <p>عطر هادئ وفخم يترك أثراً لا يُنسى.</p>
-            <span class="tag">رجالي 👔</span>
+            <img src="URL_IMAGE_BAKARAT" alt="BAKARAT" class="perfume-img">
+            <div>
+                <h3>BAKARAT</h3>
+                <span class="tag" data-en="Men's 👔" data-ar="رجالي 👔">Men's 👔</span>
+                <p class="desc" data-en="A calm and luxurious fragrance that leaves an unforgettable trail." data-ar="عطر هادئ وفخم يترك أثراً لا يُنسى.">A calm and luxurious fragrance that leaves an unforgettable trail.</p>
+            </div>
+            <div>
+                <div class="options-box">
+                    <label class="size-label">Select Size:</label>
+                    <select class="size-selector" onchange="updatePrice(this)">
+                        <option value="50" data-price="220">50 ml - 220 AED</option>
+                        <option value="100" data-price="320">100 ml - 320 AED</option>
+                    </select>
+                </div>
+                <div class="price-tag">220 AED</div>
+                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'BAKARAT')">Order via WhatsApp</a>
+            </div>
         </div>
+
+        <!-- FAZZA -->
         <div class="perfume-card">
-            <h3>FAZZA</h3>
-            <p>يمنحك شعوراً بالانتعاش والتميز طوال اليوم.</p>
-            <span class="tag">نسائي 🌺</span>
+            <img src="FAZZA.jpg" alt="FAZZA" class="perfume-img">
+            <div>
+                <h3>FAZZA</h3>
+                <span class="tag" data-en="Women's 🌺" data-ar="نسائي 🌺">Women's 🌺</span>
+                <p class="desc" data-en="Gives you a feeling of freshness and distinction all day long." data-ar="يمنحك شعوراً بالانتعاش والتميز طوال اليوم.">Gives you a feeling of freshness and distinction all day long.</p>
+            </div>
+            <div>
+                <div class="options-box">
+                    <label class="size-label">Select Size:</label>
+                    <select class="size-selector" onchange="updatePrice(this)">
+                        <option value="50" data-price="220">50 ml - 220 AED</option>
+                        <option value="100" data-price="320">100 ml - 320 AED</option>
+                    </select>
+                </div>
+                <div class="price-tag">220 AED</div>
+                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'FAZZA')">Order via WhatsApp</a>
+            </div>
         </div>
+
+        <!-- LEXUS -->
         <div class="perfume-card">
-            <h3>LEXUS</h3>
-            <p>أناقة وفخامة مطلقة في كل رشة.</p>
-            <span class="tag">نسائي 👑</span>
+            <img src="URL_IMAGE_LEXUS" alt="LEXUS" class="perfume-img">
+            <div>
+                <h3>LEXUS</h3>
+                <span class="tag" data-en="Women's 👑" data-ar="نسائي 👑">Women's 👑</span>
+                <p class="desc" data-en="Absolute elegance and luxury in every spray." data-ar="أناقة وفخامة مطلقة في كل رشة.">Absolute elegance and luxury in every spray.</p>
+            </div>
+            <div>
+                <div class="options-box">
+                    <label class="size-label">Select Size:</label>
+                    <select class="size-selector" onchange="updatePrice(this)">
+                        <option value="50" data-price="220">50 ml - 220 AED</option>
+                        <option value="100" data-price="320">100 ml - 320 AED</option>
+                    </select>
+                </div>
+                <div class="price-tag">220 AED</div>
+                <a href="#" class="btn-order" onclick="orderWhatsApp(this, 'LEXUS')">Order via WhatsApp</a>
+            </div>
         </div>
     </div>
 
-    <h2 class="section-title">الأحجام والأسعار</h2>
-    <div class="pricing-box">
-        <h3>قائمة الأسعار الرسمية</h3>
-        <p style="margin: 10px 0;">💧 <strong>حجم 50 مل:</strong> 220 درهم إماراتي</p>
-        <p style="margin: 10px 0;">💎 <strong>حجم 100 مل:</strong> 320 درهم إماراتي</p>
-    </div>
-
-    <div>
-        <a href="https://wa.me/971544741541" class="btn-whatsapp" target="_blank">اطلب عطرك الآن عبر الواتساب</a>
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <h3 id="reviews-title" style="color: var(--accent-color); margin-bottom: 15px;">Customer Reviews</h3>
+        <div class="review-form">
+            <input type="text" id="reviewer-name" placeholder="Your Name / اسمك" required>
+            <textarea id="reviewer-comment" rows="3" placeholder="Write your review... / اكتب تقييمك هنا..." required></textarea>
+            <button class="review-submit" onclick="addReview()" id="review-btn">Submit Review</button>
+        </div>
+        <div class="reviews-list" id="reviewsList">
+            <div class="review-item">
+                <strong>أحمد المري:</strong> عطور فخمة جداً وثباتها عالي!
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>تابعنا على إنستغرام: <a href="https://www.instagram.com/mohmmadtaha_313?igsi=MXg4amRnY2k1ZHVqMA%3D%3D&utm_source=qr" target="_blank">@mohmmadtaha_313</a></p>
-        <p style="margin-top: 10px;">جميع الحقوق محفوظة © TAHA AZR PERFUMES</p>
+        <p><span id="footer-text">Follow us on Instagram:</span> <a href="https://www.instagram.com/mohmmadtaha_313?igsi=MXg4amRnY2k1ZHVqMA%3D%3D&utm_source=qr" target="_blank">@mohmmadtaha_313</a></p>
+        <p style="margin-top: 10px;">All Rights Reserved © TAHA AZR PERFUMES</p>
     </footer>
 
+    <script>
+        let currentLang = 'en';
+
+        function toggleTheme() {
+            const html = document.getElementById('html-root');
+            const themeBtn = document.getElementById('theme-btn');
+            if (html.getAttribute('data-theme') === 'light') {
+                html.removeAttribute('data-theme');
+                themeBtn.innerText = currentLang === 'en' ? '☀️ Light Mode' : '☀️ الوضع النهاري';
+            } else {
+                html.setAttribute('data-theme', 'light');
+                themeBtn.innerText = currentLang === 'en' ? '🌙 Dark Mode' : '🌙 الوضع الليلي';
+            }
+        }
+
+        function toggleLanguage() {
+            const html = document.getElementById('html-root');
+            const langBtn = document.getElementById('lang-btn');
+            const themeBtn = document.getElementById('theme-btn');
+            
+            if (currentLang === 'en') {
+                currentLang = 'ar';
+                html.setAttribute('dir', 'rtl');
+                langBtn.innerText = 'English';
+                document.getElementById('site-subtitle').innerText = 'حيث يلتقي الفخامة بالتميز.. اكتشف توقيعك العطري الجديد.';
+                document.getElementById('collection-heading').innerText = 'تشكيلة العطور المميزة';
+                document.getElementById('reviews-title').innerText = 'تقييمات العملاء';
+                document.getElementById('reviewer-name').placeholder = 'اسمك';
+                document.getElementById('reviewer-comment').placeholder = 'اكتب تقييمك هنا...';
+                document.getElementById('review-btn').innerText = 'إرسال التقييم';
+                document.getElementById('footer-text').innerText = 'تابعنا على إنستغرام:';
+                
+                document.querySelectorAll('.size-label').forEach(el => el.innerText = 'اختر الحجم:');
+                document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'اطلب عبر الواتساب');
+                themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 الوضع الليلي' : '☀️ الوضع النهاري';
+
+                // ترجمة التاجات والوصف
+                document.querySelectorAll('.perfume-card').forEach(card => {
+                    const tag = card.querySelector('.tag');
+                    tag.innerText = tag.getAttribute('data-ar');
+                    const desc = card.querySelector('.desc');
+                    desc.innerText = desc.getAttribute('data-ar');
+                });
+
+            } else {
+                currentLang = 'en';
+                html.setAttribute('dir', 'ltr');
+                langBtn.innerText = 'العربية';
+                document.getElementById('site-subtitle').innerText = 'Where luxury meets uniqueness.. Discover your signature scent.';
+                document.getElementById('collection-heading').innerText = 'Our Exclusive Collection';
+                document.getElementById('reviews-title').innerText = 'Customer Reviews';
+                document.getElementById('reviewer-name').placeholder = 'Your Name';
+                document.getElementById('reviewer-comment').placeholder = 'Write your review here...';
+                document.getElementById('review-btn').innerText = 'Submit Review';
+                document.getElementById('footer-text').innerText = 'Follow us on Instagram:';
+
+                document.querySelectorAll('.size-label').forEach(el => el.innerText = 'Select Size:');
+                document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'Order via WhatsApp');
+                themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+
+                // ترجمة التاجات والوصف للانجليزية
+                document.querySelectorAll('.perfume-card').forEach(card => {
+                    const tag = card.querySelector('.tag');
+                    tag.innerText = tag.getAttribute('data-en');
+                    const desc = card.querySelector('.desc');
+                    desc.innerText = desc.getAttribute('data-en');
+                });
+            }
+        }
+
+        function updatePrice(selectElement) {
+            const card = selectElement.closest('.perfume-card');
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+            card.querySelector('.price-tag').innerText = price + ' AED';
+        }
+
+        function orderWhatsApp(button, perfumeName) {
+            const card = button.closest('.perfume-card');
+            const select = card.querySelector('.size-selector');
+            const size = select.value + ' ml';
+            const price = select.options[select.selectedIndex].getAttribute('data-price') + ' AED';
+
+            let message = "";
+            if (currentLang === 'ar') {
+                message = `مرحباً، أود طلب عطر:\n🏷️ *الاسم:* ${perfumeName}\n💧 *الحجم:* ${size}\n💰 *السعر:* ${price}\nالرجاء ترتيب تفاصيل التوصيل.`;
+            } else {
+                message = `Hello, I would like to order:\n🏷️ *Name:* ${perfumeName}\n💧 *Size:* ${size}\n💰 *Price:* ${price}\nPlease arrange delivery details.`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/971544741541?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function addReview() {
+            const name = document.getElementById('reviewer-name').value;
+            const comment = document.getElementById('reviewer-comment').value;
+            if(!name || !comment) {
+                alert(currentLang === 'ar' ? 'الرجاء إدخال الاسم والتقييم' : 'Please enter name and review');
+                return;
+            }
+
+            const list = document.getElementById('reviewsList');
+            const newReview = document.createElement('div');
+            newReview.className = 'review-item';
+            newReview.innerHTML = `<strong>${name}:</strong> ${comment}`;
+            list.prepend(newReview);
+
+            document.getElementById('reviewer-name').value = '';
+            document.getElementById('reviewer-comment').value = '';
+        }
+    </script>
 </body>
 </html>
