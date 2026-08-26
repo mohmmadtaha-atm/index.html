@@ -355,7 +355,8 @@
 
     <header>
         <h1 id="site-title">TAHA AZR PERFUMES</h1>
-        <p class="subtitle" id="site-subtitle">Where luxury meets uniqueness.. Discover your signature scent.</p>
+        <!-- الجملة الجديدة هنا -->
+        <p class="subtitle" id="site-subtitle" data-en="Fragrances that touch the soul and leave an unforgettable trail." data-ar="عطور تلامس الروح وتترك خلفك أثراً لا يُنسى.">Where luxury meets uniqueness.. Discover your signature scent.</p>
     </header>
 
     <!-- Main Grid Section -->
@@ -593,6 +594,7 @@
             const html = document.getElementById('html-root');
             const langBtn = document.getElementById('lang-btn');
             const themeBtn = document.getElementById('theme-btn');
+            const subtitleEl = document.getElementById('site-subtitle');
             
             if (currentLang === 'en') {
                 currentLang = 'ar';
@@ -600,7 +602,10 @@
                 document.getElementById('detail-text-box').style.textAlign = 'right';
                 document.querySelector('.reviews-section').style.textAlign = 'right';
                 langBtn.innerText = 'English';
-                document.getElementById('site-subtitle').innerText = 'اكتشف سحر العطور الفاخرة التي تترك انطباعاً لا يُنسى.';
+                
+                // تحديث الجملة للغة العربية
+                subtitleEl.innerText = subtitleEl.getAttribute('data-ar');
+
                 document.getElementById('collection-heading').innerText = 'تشكيلة العطور المميزة';
                 document.getElementById('reviews-title').innerText = 'تقييمات العملاء';
                 document.getElementById('reviewer-name').placeholder = 'اسمك';
@@ -609,9 +614,8 @@
                 document.getElementById('footer-text').innerText = 'تابعنا على إنستغرام:';
                 document.getElementById('suggestions-title').innerText = 'قد يعجبك أيضاً';
                 
-                // زر الرجوع المحدث
                 document.getElementById('back-btn-text').innerText = 'العودة';
-                document.getElementById('back-arrow-icon').innerText = '→'; // اتجاه السهم يتكيف يميناً في العربية
+                document.getElementById('back-arrow-icon').innerText = '→';
 
                 document.querySelectorAll('.btn-order').forEach(el => el.innerText = 'اطلب عبر الواتساب');
                 themeBtn.innerText = html.getAttribute('data-theme') === 'light' ? '🌙 الوضع الليلي' : '☀️ الوضع النهاري';
@@ -637,7 +641,10 @@
                 document.getElementById('detail-text-box').style.textAlign = 'left';
                 document.querySelector('.reviews-section').style.textAlign = 'left';
                 langBtn.innerText = 'العربية';
-                document.getElementById('site-subtitle').innerText = 'Where luxury meets uniqueness.. Discover your signature scent.';
+                
+                // تحديث الجملة للغة الإنجليزية
+                subtitleEl.innerText = subtitleEl.getAttribute('data-en');
+
                 document.getElementById('collection-heading').innerText = 'Our Exclusive Collection';
                 document.getElementById('reviews-title').innerText = 'Customer Reviews';
                 document.getElementById('reviewer-name').placeholder = 'Your Name';
@@ -646,7 +653,6 @@
                 document.getElementById('footer-text').innerText = 'Follow us on Instagram:';
                 document.getElementById('suggestions-title').innerText = 'You May Also Like';
 
-                // زر الرجوع بالإنجليزية
                 document.getElementById('back-btn-text').innerText = 'Back';
                 document.getElementById('back-arrow-icon').innerText = '←';
 
